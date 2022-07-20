@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <head>
   <title>Water Intake</title>
+  <script src="/index.js" defer></script>
+  <link rel="stylesheet" href="/index.css"></script>
 </head>
 <body>
+  <audio id="test-audio">
+    <source src="/ac_audio.mp3" type="audio/mpeg">
+  </audio>
   <div>
-    Yes
+    <div>
+      <span>In milliliters</span>
+      <input type="number" id="input_water_intake" placeholder="How much did you drink since the last time?" />
+    </div>
+    <div>
+      <button type="button" id="update_water" onclick="updateWater()" name="update_water">Update</button>
+      <div>Today's water intake: <span id="track_water_intake">0</span></div>
+    </div>
   </div>
 </body>
