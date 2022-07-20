@@ -1,21 +1,61 @@
 <!DOCTYPE html>
+
 <head>
   <title>Water Intake</title>
   <script src="/index.js" defer></script>
-  <link rel="stylesheet" href="/index.css"></script>
+  <link rel="stylesheet" href="/index.css">
+  </script>
 </head>
+
 <body>
   <audio id="test-audio">
     <source src="/ac_audio.mp3" type="audio/mpeg">
   </audio>
-  <div>
-    <div>
-      <span>In milliliters</span>
-      <input type="number" id="input_water_intake" placeholder="How much did you drink since the last time?" />
+
+  <div class="body-container">
+  <h1>Track your daily water intake!</h1>
+    What is your biological gender?
+    <button type="button" onclick="WaterRecommendationMen()">Men</button>
+    <button type="button" onclick="WaterRecommendationWomen()">Women</button>
+    <div class="preset-container">
+      <div>
+        <input type="text" id="preset-name" placeholder="name" />
+        <input type="number" id="preset-size" placeholder="size (oz)" />
+        <button type="button" id="add-preset" onclick="AddPreset()">Add Preset</button>
+      </div>
+      <div class="preset-options hidden">
+        Presets: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
+      </div>
     </div>
     <div>
-      <button type="button" id="update_water" onclick="updateWater()" name="update_water">Update</button>
-      <div>Today's water intake: <span id="track_water_intake">0</span></div>
+      <span>How much did you drink?</span>
+      <input type="number" id="input_water_intake" />oz
     </div>
+    <div>
+      <button type="button" id="update_water" onclick="UpdateWater()" name="update_water">Update</button>
+      <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
+    </div>
+    <div>
+      <span class="water-rec water-recommendation-men">Recommended for men: 125oz</span>
+      <span class="water-rec water-recommendation-women">Recommended for women: 91oz</span>
+    </div>
+    <img src="/sprite-puddle_slime.gif" alt="puddle slime sprite" />
   </div>
 </body>
+
+<!-- 
+  Daily water intake:
+  - men -> 3.7 liters : 125oz
+  - women -> 2.7 liters : 91oz
+
+  Standard water bottle sizes:
+  - 6oz : .177 liters
+  - 8oz : .24 liters
+  - 12oz : .355 liters
+  - 16.9oz : .5 liters
+  - 20oz : .59 liters
+  - 24oz : .71 liters
+  - 33.8oz : 1 liter
+
+  My bottle: brita -> 26oz 
+ -->

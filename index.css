@@ -1,5 +1,37 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 body {
   text-align: center;
   background-color: #015e78;
   color: #fff;
+}
+.body-container {
+  margin-top: 15%;
+}
+.preset-container input {
+  width: 55px;
+  padding: 8px 10px;
+}
+.preset-options.hidden {
+  visibility: hidden;
+}
+.water-rec {
+  display: none;
+}
+img {
+  width: 150px;
+}
+#input_water_intake {
+  width: 25px;
+}
+select {
+  padding: 0 15px 0 4px;
 }
