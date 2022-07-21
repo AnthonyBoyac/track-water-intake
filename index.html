@@ -13,33 +13,60 @@
   </audio>
 
   <div class="body-container">
-  <h1>Track your daily water intake!</h1>
-    What is your biological gender?
-    <button type="button" onclick="WaterRecommendationMen()">Men</button>
-    <button type="button" onclick="WaterRecommendationWomen()">Women</button>
-    <div class="preset-container">
+    <div class="achievements-container">
+      <h1>Achievements</h3>
       <div>
-        <input type="text" id="preset-name" placeholder="name" />
-        <input type="number" id="preset-size" placeholder="size (oz)" />
-        <button type="button" id="add-preset" onclick="AddPreset()">Add Preset</button>
+        <img />This is the start of your journey. Never give up and carry on no matter the obstacle!
       </div>
-      <div class="preset-options hidden">
-        Presets: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
+      <div>
+        Achievement 2
+      </div>
+      <div>
+        Achievement 3
+      </div>
+      <div>
+        Achievement 4
+      </div>
+      <div>
+        Achievement 5
       </div>
     </div>
-    <div>
-      <span>How much did you drink?</span>
-      <input type="number" id="input_water_intake" />oz
+    <div class="info-container">
+      <h1>Track your daily water intake!</h1>
+      What is your biological gender?
+      <button type="button" onclick="WaterRecommendationMen()">Men</button>
+      <button type="button" onclick="WaterRecommendationWomen()">Women</button>
+      <div class="body-info">
+        <div class="preset-container">
+          <div class="preset-addition">
+            <div>
+              <input type="text" id="preset-name" placeholder="name" />
+              <input type="number" id="preset-size" placeholder="size (oz)" />
+            </div>
+            <button type="button" id="add-preset" onclick="AddPreset()">Add Preset</button>
+          </div>
+          <div class="preset-options hidden">
+            Presets: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
+          </div>
+        </div>
+        <div class="water-intake-container">
+          <div class="water-intake-title">
+            How much <i>water</i> did you drink?
+          </div>
+          <div class="water-intake-form">
+            <input type="number" id="input_water_intake" placeholder="1"/>oz
+            <button type="button" id="update_water" onclick="UpdateWater()" name="update_water">Drink!</button>
+          </div>
+          <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
+          <div>
+            <span class="water-rec water-recommendation-men">Recommended for men: 125oz</span>
+            <span class="water-rec water-recommendation-women">Recommended for women: 91oz</span>
+          </div>
+        </div>
+      </div>
+      <img src="/sprite-puddle_slime.gif" alt="puddle slime sprite" />
     </div>
-    <div>
-      <button type="button" id="update_water" onclick="UpdateWater()" name="update_water">Update</button>
-      <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
-    </div>
-    <div>
-      <span class="water-rec water-recommendation-men">Recommended for men: 125oz</span>
-      <span class="water-rec water-recommendation-women">Recommended for women: 91oz</span>
-    </div>
-    <img src="/sprite-puddle_slime.gif" alt="puddle slime sprite" />
+
   </div>
 </body>
 
