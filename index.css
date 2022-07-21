@@ -44,6 +44,9 @@ input, button, select {
 .water-intake-container {
   background-color: #005770;
 }
+.gender-container {
+  visibility: hidden;
+}
 .achievements-container {
   float: left;
   margin: 2rem 0 0 2rem;
@@ -71,7 +74,7 @@ input, button, select {
 .start-of-day-container .notice {
   position: absolute;
   top: 33px;
-  right: 18px;
+  right: 49px;
   margin-left: 2px;
   font-size: .8rem;
   color: #d2d2d2;
