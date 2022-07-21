@@ -4,7 +4,12 @@
   <title>Water Intake</title>
   <script src="/index.js" defer></script>
   <link rel="stylesheet" href="/index.css">
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Roboto&family=Sansita+Swashed:wght@300&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/cef863f3ec.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,30 +20,44 @@
   <div class="body-container">
     <div class="achievements-container">
       <h1>Achievements</h3>
-      <div>
-        <img />This is the start of your journey. Never give up and carry on no matter the obstacle!
-      </div>
-      <div>
-        Achievement 2
-      </div>
-      <div>
-        Achievement 3
-      </div>
-      <div>
-        Achievement 4
-      </div>
-      <div>
-        Achievement 5
-      </div>
+        <div class="achievements-list">
+          <div>
+            <img />This is the start of your journey. Never give up and carry on no matter the obstacle!
+          </div>
+          <div>
+            Achievement 2
+          </div>
+          <div>
+            Achievement 3
+          </div>
+          <div>
+            Achievement 4
+          </div>
+          <div>
+            Achievement 5
+          </div>
+        </div>
+
     </div>
     <div class="info-container">
       <h1>Track your daily water intake!</h1>
-      What is your biological gender?
-      <button type="button" onclick="WaterRecommendationMen()">Men</button>
-      <button type="button" onclick="WaterRecommendationWomen()">Women</button>
+      <div class="start-of-day-container">
+        <span>What time do you start drinking water?</span>
+        <input type="time" id="time-picker"><span class="notice">24h format</span>
+        <button class="time-picker-submit" type="button" onclick="TimePicker()"><i class="fa-solid fa-check"></i></button>
+      </div>
+      <div class="gender-container">
+        <span>What is your biological gender?</span>
+        <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i
+            class="fa-solid fa-venus"></i></button>
+        <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i
+            class="fa-solid fa-mars"></i></button>
+      </div>
+
       <div class="body-info">
         <div class="preset-container">
           <div class="preset-addition">
+            <h3>Presets</h3>
             <div>
               <input type="text" id="preset-name" placeholder="name" />
               <input type="number" id="preset-size" placeholder="size (oz)" />
@@ -46,7 +65,7 @@
             <button type="button" id="add-preset" onclick="AddPreset()">Add Preset</button>
           </div>
           <div class="preset-options hidden">
-            Presets: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
+            Select your preset: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
           </div>
         </div>
         <div class="water-intake-container">
@@ -54,7 +73,7 @@
             How much <i>water</i> did you drink?
           </div>
           <div class="water-intake-form">
-            <input type="number" id="input_water_intake" placeholder="1"/>oz
+            <input type="number" id="input_water_intake" />oz
             <button type="button" id="update_water" onclick="UpdateWater()" name="update_water">Drink!</button>
           </div>
           <div>Today's water intake: <span id="track_water_intake"></span>oz</div>

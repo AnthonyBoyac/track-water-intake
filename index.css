@@ -1,3 +1,6 @@
+:root {
+  --main-containers-color: #015e78;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -8,30 +11,83 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+html {
+  background-color: var(--main-containers-color);
+}
 body {
   text-align: center;
-  background-color: #015e78;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  margin: 0;
+}
+input, button, select {
+  border: none;
+}
+::placeholder {
+  color: #767676;
 }
 .body-container {
   /* margin-top: 8%; */
   height: 98vh;
   background-color: #00536bab;
+  font-family: 'Crimson Text', serif;
+}
+.achievements-container div,
+.preset-container,
+.water-intake-container,
+.gender-container {
+  border-radius: 10px;
+}
+.gender-container,
+.start-of-day-container,
+.preset-container,
+.water-intake-container {
+  background-color: #005770;
 }
 .achievements-container {
   float: left;
-  margin-left: 2rem;
-  padding: 2rem;
+  margin: 2rem 0 0 2rem;
+  padding: 0 1rem 0 2rem;
   width: 25%;
 }
 .achievements-container div {
   text-align: left;
   margin: 15px 0;
 }
+.achievements-container, .info-container {
+  background-color: var(--main-containers-color);
+  height: 90vh;
+}
+.achievements-list {
+  padding: 10px 15px;
+}
+.gender-container, .start-of-day-container {
+  font-size: 1.2rem;
+  position: relative;
+  width: fit-content;
+  margin: .5rem auto;
+  padding: .65rem;
+}
+.start-of-day-container .notice {
+  position: absolute;
+  top: 33px;
+  right: 18px;
+  margin-left: 2px;
+  font-size: .8rem;
+  color: #d2d2d2;
+}
+.gender-picker, .time-picker-submit {
+  font-size: 1.15rem;
+  background: #f27e7c;
+  border-radius: 5px;
+}
+.fa-solid, .fas {
+  font-size: 90%;
+}
 .info-container {
   float: right;
-  margin-right: 4rem;
+  margin: 2rem 2rem 0 0;
+  padding: 0 2rem 0 1rem;
   width: 60%;
 }
 .body-info {
@@ -39,17 +95,22 @@ body {
   justify-content: center;
   align-items: center;
 }
+.preset-container {
+  max-width: 9.7rem;
+}
 .preset-container, .water-intake-container {
   margin: 1rem;
   padding: 1rem;
   min-height: 14rem;
-  background: #015e78;
 }
 .preset-addition {
   display: grid;
 }
 .preset-addition button {
   margin-top: 0.5rem;
+  background-color: #9d9d9d;
+  padding: .3rem 0;
+  font-weight: 600;
 }
 .preset-container input {
   width: 55px;
@@ -66,26 +127,46 @@ body {
 }
 .water-intake-title {
   font-size: 2rem;
-  color: #24fffc;
 }
 .water-intake-form {
   margin: 1rem 0 2rem 0;
 }
 .water-intake-form button {
   margin-left: 2rem;
+  font-size: 2rem;
+  border-radius: 10px;
+  border: 3px solid #f27f7f;
+  background: #f27e7c;
 }
 .water-rec {
   display: none;
 }
+h1 {
+  font-family: 'Sansita Swashed', 'cursive', sans-serif;
+  letter-spacing: 0.15rem;
+  color: #f27f7f;
+}
+h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+}
 img {
   position: absolute;
-  top: 0;
-  right: 120px;
+  top: 510px;
+  right: 420px;
   width: 150px;
 }
 #input_water_intake {
+  margin-right: 2px;
+  background-color: #6eacbe;
+  border: 2px solid #6eacbe;
+  border-radius: 10px;
+  text-align: center;
   width: 30px;
 }
 select {
+  min-width: 9em;
   padding: 0 15px 0 4px;
 }

@@ -1,5 +1,7 @@
 // localStorage.clear();
-
+var current = new Date()
+var currentTime = current.getHours() + ":" + current.getMinutes()
+var dayReset;
 var presets = document.getElementById("presets")
 var presetOptions = document.querySelector(".preset-options")
 if (localStorage.getItem("dailyIntake") === null) {
@@ -23,14 +25,14 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 3.5/5
+// current daily intake: 1.2/5
 
 // play audio when certain condition are met
 function PlayAudio() {
   document.getElementById("test-audio").play()
 }
 
-// change content based on biological gender
+// change which recommendation for water is displayed based on picked biological gender
 function WaterRecommendationMen() {
   document.querySelector(".body-info").style.display = "flex"
   document.querySelector(".water-recommendation-women").style.display = "none"
@@ -42,6 +44,21 @@ function WaterRecommendationWomen() {
   document.querySelector(".water-recommendation-women").style.display = "block"
 }
 
+// set daily reset based on time input value
+function TimePicker() {
+  var startTime = document.getElementById("time-picker")
+  // check if input is empty or not
+  if (startTime.value === "") {
+    throw new Error("Expected input to be filled out")
+  }
+  dayReset = startTime.value
+  console.log(startTime.value)
+
+  console.log(current.getHours() + ":" + current.getMinutes())
+  console.log(currentTime == startTime.value)
+}
+
+// update water input value based on selected preset
 function OnSelectChange() {
   let selectedValue = presets.options[presets.selectedIndex].value
   selectedValue = selectedValue.substring(selectedValue.indexOf(" ") + 1, selectedValue.length)
@@ -58,7 +75,7 @@ function AddPreset() {
   if (presetName.value === "" || presetSize.value === "") {
     alert("Please fill out both inputs")
     throw new Error("You need to fill out both inputs")
-  } else {
+  }
     var option = document.createElement("option")
     option.innerHTML = `
       <option value="${presetName.value}">
@@ -69,7 +86,6 @@ function AddPreset() {
     presets.appendChild(option)
     presetName.value = ""
     presetSize.value = ""
-  }
 
 }
 
