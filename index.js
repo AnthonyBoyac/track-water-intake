@@ -17,26 +17,27 @@ for (var i = 0; i < localStorage.length; i++) {
     presets.appendChild(option)
   }
 }
-console.log(presets.length)
 
 if (presets.length > 0) {
   presetOptions.style.visibility = "visible"
   OnSelectChange()
 }
 
-// current daily intake: 3/5
+// current daily intake: 3.5/5
 
 // play audio when certain condition are met
 function PlayAudio() {
-  console.log(document.getElementById("test-audio"))
   document.getElementById("test-audio").play()
 }
 
+// change content based on biological gender
 function WaterRecommendationMen() {
+  document.querySelector(".body-info").style.display = "flex"
   document.querySelector(".water-recommendation-women").style.display = "none"
   document.querySelector(".water-recommendation-men").style.display = "block"
 }
 function WaterRecommendationWomen() {
+  document.querySelector(".body-info").style.display = "flex"
   document.querySelector(".water-recommendation-men").style.display = "none"
   document.querySelector(".water-recommendation-women").style.display = "block"
 }
