@@ -12,25 +12,79 @@ body {
   text-align: center;
   background-color: #015e78;
   color: #fff;
+  font-size: 1.2rem;
 }
 .body-container {
-  margin-top: 15%;
+  /* margin-top: 8%; */
+  height: 98vh;
+  background-color: #00536bab;
+}
+.achievements-container {
+  float: left;
+  margin-left: 2rem;
+  padding: 2rem;
+  width: 25%;
+}
+.achievements-container div {
+  text-align: left;
+  margin: 15px 0;
+}
+.info-container {
+  float: right;
+  margin-right: 4rem;
+  width: 60%;
+}
+.body-info {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.preset-container, .water-intake-container {
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 14rem;
+  background: #015e78;
+}
+.preset-addition {
+  display: grid;
+}
+.preset-addition button {
+  margin-top: 0.5rem;
 }
 .preset-container input {
   width: 55px;
-  padding: 8px 10px;
+  padding: 5px 10px;
+}
+.preset-options {
+  margin-top: 1rem;
 }
 .preset-options.hidden {
   visibility: hidden;
+}
+.water-intake-form input, .water-intake-form button {
+  font-size: 1.4rem;
+}
+.water-intake-title {
+  font-size: 2rem;
+  color: #24fffc;
+}
+.water-intake-form {
+  margin: 1rem 0 2rem 0;
+}
+.water-intake-form button {
+  margin-left: 2rem;
 }
 .water-rec {
   display: none;
 }
 img {
+  position: absolute;
+  top: 0;
+  right: 120px;
   width: 150px;
 }
 #input_water_intake {
-  width: 25px;
+  width: 30px;
 }
 select {
   padding: 0 15px 0 4px;
