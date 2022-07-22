@@ -29,7 +29,25 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 2.2/5
+// current daily intake: 4.2/5
+
+// open settings menu when clicking on gear icon
+var settings = document.querySelector(".settings-icons")
+settings.addEventListener("click", function () {
+  document.getElementById("settings").style.display = "block"
+})
+// close settings menu on outside click
+document.addEventListener("mouseup", function(e) {
+  var container = document.getElementById("settings");
+  if (!container.contains(e.target)) {
+      container.style.display = "none";
+  }
+});
+// close menu when clicking on x icon
+var settingsCloseIcon = document.querySelector(".fa-xmark")
+settingsCloseIcon.addEventListener("click", function () {
+  document.getElementById("settings").style.display = "none"
+})
 
 // play audio when certain condition are met
 function PlayAudio() {
@@ -51,8 +69,13 @@ function WaterRecommendationWomen() {
 }
 
 // set daily reset based on time input value
-function TimePicker() {
-  var startTime = document.getElementById("time-picker")
+function TimePicker(e) {
+  // select the correct class from which button is clicked
+  // note: need second class to select as argument for querySelector
+  var elTargetClass = e.target.className
+  elTargetClass = elTargetClass.split(" ")[1]
+  elTargetClass = document.querySelector("." + elTargetClass)
+  var startTime = elTargetClass.previousElementSibling.previousElementSibling
   // check if input is empty or not
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
