@@ -17,7 +17,7 @@ html {
 body {
   text-align: center;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin: 0;
 }
 input, button, select {
@@ -41,9 +41,9 @@ input, button, select {
   width: 40%;
   max-width: 350px;
   height: 50vh;
-  background: #c4c4c4;
+  background: #123450;
   position: absolute;
-  top: 0;
+  top: 65px;
   right: 0;
   z-index: 101;
   padding: 10px 15px;
@@ -66,7 +66,7 @@ input, button, select {
 .fa-droplet {
   color: #1a93fc;
   top: 8px;
-  right: -29px;
+  right: -33px;
   z-index: 10;
 }
 .body-container {
@@ -107,11 +107,18 @@ input, button, select {
 .achievements-list {
   padding: 10px 15px;
 }
+.achievement {
+  display: flex;
+  align-items: center;
+}
+.fa-star {
+  color: #858585;
+}
 .start-of-day-container input {
   margin: 0 6px;
+  font-size: .75em;
 }
 .gender-container, .start-of-day-container {
-  font-size: 1.2rem;
   position: relative;
   width: fit-content;
   margin: .5rem auto;
@@ -119,8 +126,8 @@ input, button, select {
 }
 .start-of-day-container .notice {
   position: absolute;
-  top: 33px;
-  right: 54px;
+  top: 37px;
+  right: 62px;
   font-size: .8rem;
   color: #d2d2d2;
 }
