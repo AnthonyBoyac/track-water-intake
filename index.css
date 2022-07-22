@@ -26,9 +26,52 @@ input, button, select {
 ::placeholder {
   color: #767676;
 }
+#settings {
+  display: none;
+  text-align: left;
+}
+.settings-close {
+  cursor: pointer;
+  text-align: end;
+  width: 18px;
+  margin-left: auto;
+  padding: 10px;
+}
+.settings-container {
+  width: 40%;
+  max-width: 350px;
+  height: 50vh;
+  background: #c4c4c4;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  padding: 10px 15px;
+}
+.settings-icons {
+  cursor: pointer;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 55px;
+}
+.settings-icons i {
+  position: relative;
+}
+.fa-gear {
+  color: #6ab6cb;
+  top: 10px;
+  right: 5px;
+}
+.fa-droplet {
+  color: #1a93fc;
+  top: 8px;
+  right: -29px;
+  z-index: 10;
+}
 .body-container {
   /* margin-top: 8%; */
-  height: 98vh;
+  height: 100vh;
   background-color: #00536bab;
   font-family: 'Crimson Text', serif;
 }
@@ -59,10 +102,13 @@ input, button, select {
 }
 .achievements-container, .info-container {
   background-color: var(--main-containers-color);
-  height: 90vh;
+  height: 92vh;
 }
 .achievements-list {
   padding: 10px 15px;
+}
+.start-of-day-container input {
+  margin: 0 6px;
 }
 .gender-container, .start-of-day-container {
   font-size: 1.2rem;
@@ -74,8 +120,7 @@ input, button, select {
 .start-of-day-container .notice {
   position: absolute;
   top: 33px;
-  right: 49px;
-  margin-left: 2px;
+  right: 54px;
   font-size: .8rem;
   color: #d2d2d2;
 }
@@ -146,7 +191,7 @@ input, button, select {
 }
 h1 {
   font-family: 'Sansita Swashed', 'cursive', sans-serif;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.1rem;
   color: #f27f7f;
 }
 h3 {
