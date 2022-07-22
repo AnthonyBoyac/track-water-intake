@@ -54,6 +54,7 @@ function PlayAudio() {
   document.getElementById("test-audio").play()
 }
 
+// TODO: optimize this shit
 // change which recommendation for water is displayed based on picked biological gender
 function WaterRecommendationMen() {
   document.querySelector(".body-info").style.display = "flex"
