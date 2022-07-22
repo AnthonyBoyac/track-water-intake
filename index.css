@@ -13,6 +13,7 @@ input[type=number] {
 }
 html {
   background-color: var(--main-containers-color);
+  overflow: hidden;
 }
 body {
   text-align: center;
@@ -29,24 +30,42 @@ input, button, select {
 #settings {
   display: none;
   text-align: left;
+  font-size: 1.3rem;
+  animation: slideIn .4s ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%)
+  }
+  100% {
+    transform: translateX(0)
+  }
 }
 .settings-close {
+  position: absolute;
+  top: 2px;
+  right: 10px;
   cursor: pointer;
   text-align: end;
   width: 18px;
-  margin-left: auto;
   padding: 10px;
 }
 .settings-container {
   width: 40%;
   max-width: 350px;
   height: 50vh;
-  background: #123450;
+  background-image: linear-gradient(358deg, #4b84ab -20%, #04619f 74%);
   position: absolute;
   top: 65px;
   right: 0;
   z-index: 101;
   padding: 10px 15px;
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+}
+.settings-container h3 {
+  font-size: 1.8rem;
 }
 .settings-icons {
   cursor: pointer;
@@ -54,6 +73,7 @@ input, button, select {
   top: 40px;
   right: 40px;
   height: 55px;
+  z-index: 0;
 }
 .settings-icons i {
   position: relative;
@@ -114,6 +134,9 @@ input, button, select {
 .fa-star {
   color: #858585;
 }
+.start-of-day-container {
+  visibility: hidden;
+}
 .start-of-day-container input {
   margin: 0 6px;
   font-size: .75em;
@@ -124,12 +147,18 @@ input, button, select {
   margin: .5rem auto;
   padding: .65rem;
 }
-.start-of-day-container .notice {
+.notice {
   position: absolute;
-  top: 37px;
-  right: 62px;
   font-size: .8rem;
   color: #d2d2d2;
+}
+.start-of-day-container .notice {
+  top: 37px;
+  right: 62px;
+}
+#settings .notice {
+  top: 120px;
+  right: 105px;
 }
 .gender-picker, .time-picker-submit {
   font-size: 1.15rem;

@@ -8,6 +8,8 @@ resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
 
 function ResetDay() {
   if (localStorage.getItem("dayReset") != null) {
+    document.querySelector(".start-of-day-container").style.visibility = "hidden"
+    document.querySelector(".gender-container").style.visibility = "visible"
     let dayReset = localStorage.getItem("dayReset")
     // convert localStorage string back to Date object
     dayReset = new Date(dayReset)
@@ -18,10 +20,26 @@ function ResetDay() {
       dayReset.setDate(dayReset.getDate() + 1)
       localStorage.setItem("dayReset", dayReset)
     }
+  } else {
+    document.querySelector(".start-of-day-container").style.visibility = "visible"
+  }
+  if (localStorage.getItem("genderPickedBool") == "true") {
+    document.querySelector(".gender-container").style.display = "none"
+    document.querySelector(".body-info").style.display = "flex"
   }
 }
 // run function on page load
 ResetDay()
+
+// if user picked a gender, display the correct content
+var genderPicked = localStorage.getItem("genderPicked")
+if (genderPicked != null) {
+  if (genderPicked == "women") {
+    document.querySelector(".water-recommendation-women").style.display = "block"
+  } else {
+    document.querySelector(".water-recommendation-men").style.display = "block"
+  }
+}
 
 var presets = document.getElementById("presets")
 var presetOptions = document.querySelector(".preset-options")
@@ -30,11 +48,12 @@ if (localStorage.getItem("dailyIntake") === null) {
 }
 document.getElementById("track_water_intake").innerHTML = localStorage.getItem("dailyIntake")
 for (var i = 0; i < localStorage.length; i++) {
-  if ((localStorage.key(i) !== "dailyIntake") && (localStorage.key(i) !== "dayReset")) {
-    var option = document.createElement("option")
+  if (localStorage.key(i).includes("preset")) {
+    let option = document.createElement("option")
+    let presetKeyName = localStorage.key(i).substring(localStorage.key(i).indexOf(":") + 1, localStorage.key(i).length)
     option.innerHTML = `
       <option value="${localStorage.getItem(localStorage.key(i))}">
-        ${localStorage.key(i)}: ${localStorage.getItem(localStorage.key(i))}
+        ${presetKeyName}: ${localStorage.getItem(localStorage.key(i))}
       </option>
     `
     presets.appendChild(option)
@@ -81,6 +100,7 @@ function TimePicker(e) {
   var elTargetClass = e.target.className
   elTargetClass = elTargetClass.split(" ")[1]
   elTargetClass = document.querySelector("." + elTargetClass)
+  console.log(elTargetClass)
   var startTime = elTargetClass.previousElementSibling.previousElementSibling
   // check if input is empty or not
   if (startTime.value === "") {
@@ -100,15 +120,18 @@ function TimePicker(e) {
 // change which recommendation for water is displayed based on picked biological gender
 function WaterRecommendationMen() {
   WaterRecHelper()
+  localStorage.setItem("genderPicked", "men")
   document.querySelector(".water-recommendation-women").style.display = "none"
   document.querySelector(".water-recommendation-men").style.display = "block"
 }
 function WaterRecommendationWomen() {
   WaterRecHelper()
+  localStorage.setItem("genderPicked", "women")
   document.querySelector(".water-recommendation-men").style.display = "none"
   document.querySelector(".water-recommendation-women").style.display = "block"
 }
 function WaterRecHelper() {
+  localStorage.setItem("genderPickedBool", true)
   document.querySelector(".body-info").style.display = "flex"
   document.querySelector(".gender-container").style.display = "none"
 }
@@ -137,7 +160,7 @@ function AddPreset() {
         ${presetName.value}: ${presetSize.value}
       </option
     `
-    localStorage.setItem(presetName.value, presetSize.value)
+    localStorage.setItem("preset:" + presetName.value, presetSize.value)
     presets.appendChild(option)
     presetName.value = ""
     presetSize.value = ""

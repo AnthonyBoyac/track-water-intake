@@ -23,19 +23,22 @@
   <div class="body-container">
     <section id="settings">
       <div class="settings-container">
+        <h3>Settings</h3>
         <div class="settings-close">
           <i class="fa-solid fa-xmark fa-lg"></i>
         </div>
-        <div>
-          Switch gender: 
-          <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i class="fa-solid fa-venus"></i></button>
-          <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i class="fa-solid fa-mars"></i></button>
-        </div>
-        <div>
-          <span>Change water intake daily reset:</span>
-          <input type="time" class="time-picker"><span class="notice">24h format</span>
-          <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(event)"><i class="fa-solid fa-check"></i></button>
-        </div>
+        <ul>
+          <li>
+            Switch gender: 
+            <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i class="fa-solid fa-venus"></i></button>
+            <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i class="fa-solid fa-mars"></i></button>
+          </li>
+          <li>
+            <span>Change daily reset:</span>
+            <input type="time" class="time-picker"><span class="notice">24h format</span>
+            <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(event)"><i class="fa-solid fa-check"></i></button>
+          </li>
+        </ul>
       </div>
     </section>
 
