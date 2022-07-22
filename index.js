@@ -1,11 +1,28 @@
 // localStorage.clear();
-var current = new Date()
-var currentTime = current.getHours() + ":" + current.getMinutes()
-// variable for user to pick when their day resets
-var dayReset;
-if (localStorage.getItem("dayReset") != null) {
-  dayReset = localStorage.getItem("dayReset")
+/*
+ * START - Runs on load time
+ */
+const CURRENT_DATE = new Date()
+var resetNextDay = new Date()
+resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
+
+function ResetDay() {
+  if (localStorage.getItem("dayReset") != null) {
+    let dayReset = localStorage.getItem("dayReset")
+    // convert localStorage string back to Date object
+    dayReset = new Date(dayReset)
+    // if today's date is after daily reset set by user, reset daily water input
+    // AND update dayReset to next day at same time
+    if (CURRENT_DATE > dayReset) {
+      document.getElementById("track_water_intake").innerHTML = 0
+      dayReset.setDate(dayReset.getDate() + 1)
+      localStorage.setItem("dayReset", dayReset)
+    }
+  }
 }
+// run function on page load
+ResetDay()
+
 var presets = document.getElementById("presets")
 var presetOptions = document.querySelector(".preset-options")
 if (localStorage.getItem("dailyIntake") === null) {
@@ -29,7 +46,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 4.2/5
+// current daily intake: 2/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -48,25 +65,13 @@ var settingsCloseIcon = document.querySelector(".fa-xmark")
 settingsCloseIcon.addEventListener("click", function () {
   document.getElementById("settings").style.display = "none"
 })
+/*
+ * END - Runs on load time
+ */
 
 // play audio when certain condition are met
 function PlayAudio() {
   document.getElementById("test-audio").play()
-}
-
-// TODO: optimize this shit
-// change which recommendation for water is displayed based on picked biological gender
-function WaterRecommendationMen() {
-  document.querySelector(".body-info").style.display = "flex"
-  document.querySelector(".water-recommendation-women").style.display = "none"
-  document.querySelector(".water-recommendation-men").style.display = "block"
-  document.querySelector(".gender-container").style.display = "none"
-}
-function WaterRecommendationWomen() {
-  document.querySelector(".body-info").style.display = "flex"
-  document.querySelector(".water-recommendation-men").style.display = "none"
-  document.querySelector(".water-recommendation-women").style.display = "block"
-  document.querySelector(".gender-container").style.display = "none"
 }
 
 // set daily reset based on time input value
@@ -81,10 +86,31 @@ function TimePicker(e) {
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
   }
-  dayReset = startTime.value
-  localStorage.setItem("dayReset", dayReset)
+  // split hours and minutes to set the correct time for the date
+  var startTimeArr = startTime.value.split(":")
+  resetNextDay.setHours(startTimeArr[0])
+  resetNextDay.setMinutes(startTimeArr[1])
+  resetNextDay.setSeconds(0)
+  localStorage.setItem("dayReset", resetNextDay)
+
   document.querySelector(".start-of-day-container").style.visibility = "hidden"
   document.querySelector(".gender-container").style.visibility = "visible"
+}
+
+// change which recommendation for water is displayed based on picked biological gender
+function WaterRecommendationMen() {
+  WaterRecHelper()
+  document.querySelector(".water-recommendation-women").style.display = "none"
+  document.querySelector(".water-recommendation-men").style.display = "block"
+}
+function WaterRecommendationWomen() {
+  WaterRecHelper()
+  document.querySelector(".water-recommendation-men").style.display = "none"
+  document.querySelector(".water-recommendation-women").style.display = "block"
+}
+function WaterRecHelper() {
+  document.querySelector(".body-info").style.display = "flex"
+  document.querySelector(".gender-container").style.display = "none"
 }
 
 // update water input value based on selected preset
@@ -115,7 +141,6 @@ function AddPreset() {
     presets.appendChild(option)
     presetName.value = ""
     presetSize.value = ""
-
 }
 
 // update current water total based on user's input
@@ -137,10 +162,8 @@ function UpdateWater() {
 // check for change in time every minute
 (function Loop() {
   setTimeout(function () {
-    // if the set time is the same as the current time, reset current daily water output
-    if (dayReset == currentTime) {
-      document.getElementById("track_water_intake").innerHTML = 0
-    }
+    // check for daily reset every minute
+    ResetDay()
     Loop()
   }, 60000); // 60sec
 }());
