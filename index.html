@@ -16,13 +16,34 @@
   <audio id="test-audio">
     <source src="/ac_audio.mp3" type="audio/mpeg">
   </audio>
-
+  <div class="settings-icons">
+    <i class="fa-solid fa-droplet fa-lg"></i>
+    <i class="fa-solid fa-gear fa-2xl"></i>
+  </div>
   <div class="body-container">
+    <section id="settings">
+      <div class="settings-container">
+        <div class="settings-close">
+          <i class="fa-solid fa-xmark fa-lg"></i>
+        </div>
+        <div>
+          Switch gender: 
+          <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i class="fa-solid fa-venus"></i></button>
+          <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i class="fa-solid fa-mars"></i></button>
+        </div>
+        <div>
+          <span>Change water intake daily reset:</span>
+          <input type="time" class="time-picker"><span class="notice">24h format</span>
+          <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(event)"><i class="fa-solid fa-check"></i></button>
+        </div>
+      </div>
+    </section>
+
     <div class="achievements-container">
       <h1>Achievements</h3>
         <div class="achievements-list">
           <div>
-            <img />This is the start of your journey. Never give up and carry on no matter the obstacle!
+            <img />Reach your target goal for the first time!
           </div>
           <div>
             Achievement 2
@@ -43,15 +64,15 @@
       <h1>Track your daily water intake!</h1>
       <div class="start-of-day-container">
         <span>What time do you wake up?</span>
-        <input type="time" id="time-picker"><span class="notice">24h format</span>
-        <button class="time-picker-submit" type="button" onclick="TimePicker()"><i class="fa-solid fa-check"></i></button>
+        <input type="time" class="time-picker"><span class="notice">24h format</span>
+        <button class="time-picker-submit time-picker-form" type="button" onclick="TimePicker(event)"><i class="fa-solid fa-check"></i></button>
       </div>
       <div class="gender-container">
         <span>What is your biological gender?</span>
-        <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i
-            class="fa-solid fa-venus"></i></button>
-        <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i
-            class="fa-solid fa-mars"></i></button>
+        <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()">
+          <i class="fa-solid fa-venus"></i></button>
+        <button class="gender-picker" type="button" onclick="WaterRecommendationMen()">
+          <i class="fa-solid fa-mars"></i></button>
       </div>
 
       <div class="body-info">
