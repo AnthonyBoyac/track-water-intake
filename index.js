@@ -193,8 +193,7 @@ function PlayGifAnimation(waterInput) {
   gifEl.appendChild(imgEl)
 }
 
-// check for change in time every minute
+// check for change in the 'time picker' every minute
 setInterval(function () {
-  // check for daily reset every minute
   ResetDay()
 }, 60000); // 60sec
