@@ -172,13 +172,25 @@ function UpdateWater() {
     alert("Number needs to be greater than zero")
     throw new Error("Invalid number. Expected greater than zero");
   } else {
-    PlayAudio()
+    // PlayAudio()
     var trackWater = document.getElementById("track_water_intake")
     var totalWaterInput = (parseInt(trackWater.innerHTML))
     var total = waterInput + totalWaterInput
     trackWater.innerHTML = total
     localStorage.setItem("dailyIntake", total)
+    PlayGifAnimation(total)
   }
+}
+
+// play correct gif animation based off user water input 
+function PlayGifAnimation(waterInput) {
+  var gifEl = document.querySelector(".gif-animation")
+  var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
+  var imgEl = document.createElement("div")
+  if (waterInput < (userTarget / 4)) {
+    imgEl.innerHTML = `<img src="/slime_low_water.gif" alt="low on water puddle slime" />`
+  }
+  gifEl.appendChild(imgEl)
 }
 
 // check for change in time every minute
