@@ -28,7 +28,6 @@ function ResetDay() {
     document.querySelector(".body-info").style.display = "flex"
   }
 }
-// run function on page load
 ResetDay()
 
 // if user picked a gender, display the correct content
@@ -65,7 +64,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 2/5
+// current daily intake: 3.2/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -183,10 +182,7 @@ function UpdateWater() {
 }
 
 // check for change in time every minute
-(function Loop() {
-  setTimeout(function () {
-    // check for daily reset every minute
-    ResetDay()
-    Loop()
-  }, 60000); // 60sec
-}());
+setInterval(function () {
+  // check for daily reset every minute
+  ResetDay()
+}, 60000); // 60sec
