@@ -1,4 +1,4 @@
-// localStorage.clear();
+localStorage.clear();
 /*
  * START - Runs on load time
  */
@@ -64,7 +64,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 3.2/5
+// current daily intake: 0.8/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -99,7 +99,6 @@ function TimePicker(e) {
   var elTargetClass = e.target.className
   elTargetClass = elTargetClass.split(" ")[1]
   elTargetClass = document.querySelector("." + elTargetClass)
-  console.log(elTargetClass)
   var startTime = elTargetClass.previousElementSibling.previousElementSibling
   // check if input is empty or not
   if (startTime.value === "") {
@@ -187,8 +186,10 @@ function PlayGifAnimation(waterInput) {
   var gifEl = document.querySelector(".gif-animation")
   var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
   var imgEl = document.createElement("div")
-  if (waterInput < (userTarget / 4)) {
-    imgEl.innerHTML = `<img src="/slime_low_water.gif" alt="low on water puddle slime" />`
+  if (waterInput = 0) {
+    imgEl.innerHTML = `<img src="/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
+  } else if (waterInput < (userTarget / 3)) {
+    imgEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
   }
   gifEl.appendChild(imgEl)
 }
