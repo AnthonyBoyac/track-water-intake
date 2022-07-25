@@ -1,4 +1,6 @@
-localStorage.clear()
+// localStorage.clear()
+//TODO: optimze everything
+//TODO: add workable achievements
 /*
  * START - Runs on load time
  */
@@ -44,6 +46,7 @@ if (genderPicked != null) {
 var userTargetPicked = localStorage.getItem("user-target")
 if (userTargetPicked != null) {
   document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked
+  // document.querySelector(".settings-container").style.display = "block"
 }
 
 var presets = document.getElementById("presets")
@@ -73,7 +76,7 @@ if (presets.length > 0) {
 // current daily intake: 1.8/5
 
 // open settings menu when clicking on gear icon
-var settings = document.querySelector(".settings-icons")
+var settings = document.querySelector(".settings-container")
 settings.addEventListener("click", function () {
   document.getElementById("settings").style.display = "block"
 })
