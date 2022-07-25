@@ -1,4 +1,4 @@
-// localStorage.clear()
+localStorage.clear()
 //TODO: optimze everything
 //TODO: add workable achievements
 /*
@@ -11,7 +11,6 @@ resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
 function ResetDay() {
   if (localStorage.getItem("dayReset") != null) {
     document.querySelector(".start-of-day-container").style.visibility = "hidden"
-    document.querySelector(".gender-container").style.visibility = "visible"
     let dayReset = localStorage.getItem("dayReset")
     // convert localStorage string back to Date object
     dayReset = new Date(dayReset)
@@ -25,28 +24,17 @@ function ResetDay() {
   } else {
     document.querySelector(".start-of-day-container").style.visibility = "visible"
   }
-  if (localStorage.getItem("genderPickedBool") == "true") {
-    document.querySelector(".gender-container").style.display = "none"
+  if (localStorage.getItem("user-target") != null) {
     document.querySelector(".body-info").style.display = "flex"
   }
 }
 ResetDay()
 
-// if user picked a gender, display the correct content
-var genderPicked = localStorage.getItem("genderPicked")
-if (genderPicked != null) {
-  if (genderPicked == "women") {
-    document.querySelector(".water-recommendation-women").style.display = "block"
-  } else {
-    document.querySelector(".water-recommendation-men").style.display = "block"
-  }
-}
-
 // retrieve user's daily target goal for water intake
 var userTargetPicked = localStorage.getItem("user-target")
 if (userTargetPicked != null) {
   document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked
-  // document.querySelector(".settings-container").style.display = "block"
+  document.querySelector(".settings-icons").style.display = "block"
 }
 
 var presets = document.getElementById("presets")
@@ -76,7 +64,7 @@ if (presets.length > 0) {
 // current daily intake: 1.8/5
 
 // open settings menu when clicking on gear icon
-var settings = document.querySelector(".settings-container")
+var settings = document.querySelector(".settings-icons")
 settings.addEventListener("click", function () {
   document.getElementById("settings").style.display = "block"
 })
@@ -121,25 +109,6 @@ function TimePicker(e) {
   localStorage.setItem("dayReset", resetNextDay)
 
   document.querySelector(".start-of-day-container").style.visibility = "hidden"
-  document.querySelector(".gender-container").style.visibility = "visible"
-}
-
-// change which recommendation for water is displayed based on picked biological gender
-function WaterRecommendationMen() {
-  WaterRecHelper()
-  localStorage.setItem("genderPicked", "men")
-  document.querySelector(".water-recommendation-women").style.display = "none"
-  document.querySelector(".water-recommendation-men").style.display = "block"
-}
-function WaterRecommendationWomen() {
-  WaterRecHelper()
-  localStorage.setItem("genderPicked", "women")
-  document.querySelector(".water-recommendation-men").style.display = "none"
-  document.querySelector(".water-recommendation-women").style.display = "block"
-}
-function WaterRecHelper() {
-  localStorage.setItem("genderPickedBool", true)
-  document.querySelector(".gender-container").style.visibility = "hidden"
   document.querySelector(".user-target-container").style.display = "block"
 }
 
@@ -149,8 +118,8 @@ function UserTargetPicker() {
   localStorage.setItem("user-target", userTargetInput.value)
   document.querySelector(".water-rec--user-target").innerHTML = userTargetInput.value
   document.querySelector(".user-target-container").style.display = "none"
-  document.querySelector(".gender-container").style.display = "none"
   document.querySelector(".body-info").style.display = "flex"
+  document.querySelector(".settings-icons").style.display = "block"
 }
 
 // update water input value based on selected preset

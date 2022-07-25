@@ -68,6 +68,7 @@ input, button, select {
   font-size: 1.8rem;
 }
 .settings-icons {
+  display: none;
   cursor: pointer;
   position: absolute;
   top: 40px;
@@ -98,19 +99,14 @@ input, button, select {
 .achievements-container div,
 .preset-container,
 .water-intake-container,
-.gender-container,
 .user-target-container {
   border-radius: 10px;
 }
-.gender-container,
 .start-of-day-container,
 .preset-container,
 .water-intake-container,
 .user-target-container {
   background-color: #005770;
-}
-.gender-container {
-  visibility: hidden;
 }
 .achievements-container {
   float: left;
@@ -149,7 +145,6 @@ input, button, select {
 .water-rec {
   font-size: .85em;
 }
-.gender-container, 
 .start-of-day-container, 
 .user-target-container {
   position: relative;
@@ -164,7 +159,7 @@ input, button, select {
 }
 .start-of-day-container .notice {
   top: 37px;
-  right: 62px;
+  right: 89px;
 }
 #settings .notice {
   top: 120px;
@@ -179,7 +174,6 @@ input, button, select {
   font-size: .8em;
   margin: 0 .5rem 0 0;
 }
-.gender-picker, 
 .time-picker-submit, 
 .target-picker {
   font-size: 1.15rem;
@@ -243,7 +237,6 @@ input, button, select {
   border: 3px solid #f27f7f;
   background: #f27e7c;
 }
-.water-rec,
 .user-target-container {
   display: none;
 }
