@@ -77,6 +77,18 @@
         <button class="gender-picker" type="button" onclick="WaterRecommendationMen()">
           <i class="fa-solid fa-mars"></i></button>
       </div>
+      <div class="user-target-container">
+        <span>What is your target goal?</span>
+        <div>
+          <input id="user-target" class="target-picker-input" type="number" /><span class="unit-of-measurement">oz</span>
+          <button class="target-picker" type="button" onclick="UserTargetPicker()"><i class="fa-solid fa-check"></i></button>
+        </div>
+        <div class="target">
+          <span class="water-rec water-recommendation-men">note: recommended for male is 125oz</span>
+          <span class="water-rec water-recommendation-women">note: recommended for female is 91oz</span>
+        </div>
+      </div>
+
 
       <div class="body-info">
         <div class="preset-container">
@@ -102,9 +114,7 @@
           </div>
           <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
           <div>
-            <span class="water-rec water-recommendation-men">Recommended for male: 125oz</span>
-            <span class="water-rec water-recommendation-women">Recommended for female: 91oz</span>
-            <span>Your target goal: <span class="water-rec--user-target">100</span></span>
+            <span>Your target goal: <span class="water-rec--user-target"></span>oz</span>
           </div>
         </div>
       </div>
