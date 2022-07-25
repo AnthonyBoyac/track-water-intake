@@ -40,6 +40,12 @@ if (genderPicked != null) {
   }
 }
 
+// retrieve user's daily target goal for water intake
+var userTargetPicked = localStorage.getItem("user-target")
+if (userTargetPicked != null) {
+  document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked;
+}
+
 var presets = document.getElementById("presets")
 var presetOptions = document.querySelector(".preset-options")
 if (localStorage.getItem("dailyIntake") === null) {
@@ -130,8 +136,18 @@ function WaterRecommendationWomen() {
 }
 function WaterRecHelper() {
   localStorage.setItem("genderPickedBool", true)
-  document.querySelector(".body-info").style.display = "flex"
+  document.querySelector(".gender-container").style.visibility = "hidden"
+  document.querySelector(".user-target-container").style.display = "block"
+}
+
+// update user's water target 
+function UserTargetPicker() {
+  var userTargetInput = document.getElementById("user-target")
+  localStorage.setItem("user-target", userTargetInput.value)
+  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput.value;
+  document.querySelector(".user-target-container").style.display = "none"
   document.querySelector(".gender-container").style.display = "none"
+  document.querySelector(".body-info").style.display = "flex"
 }
 
 // update water input value based on selected preset
