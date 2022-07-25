@@ -1,4 +1,4 @@
-localStorage.clear();
+localStorage.clear()
 /*
  * START - Runs on load time
  */
@@ -43,7 +43,7 @@ if (genderPicked != null) {
 // retrieve user's daily target goal for water intake
 var userTargetPicked = localStorage.getItem("user-target")
 if (userTargetPicked != null) {
-  document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked;
+  document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked
 }
 
 var presets = document.getElementById("presets")
@@ -70,7 +70,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 0.8/5
+// current daily intake: 1.8/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -79,11 +79,11 @@ settings.addEventListener("click", function () {
 })
 // close settings menu on outside click
 document.addEventListener("mouseup", function(e) {
-  var container = document.getElementById("settings");
+  var container = document.getElementById("settings")
   if (!container.contains(e.target)) {
-      container.style.display = "none";
+      container.style.display = "none"
   }
-});
+})
 // close menu when clicking on x icon
 var settingsCloseIcon = document.querySelector(".fa-xmark")
 settingsCloseIcon.addEventListener("click", function () {
@@ -144,7 +144,7 @@ function WaterRecHelper() {
 function UserTargetPicker() {
   var userTargetInput = document.getElementById("user-target")
   localStorage.setItem("user-target", userTargetInput.value)
-  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput.value;
+  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput.value
   document.querySelector(".user-target-container").style.display = "none"
   document.querySelector(".gender-container").style.display = "none"
   document.querySelector(".body-info").style.display = "flex"
@@ -185,7 +185,7 @@ function UpdateWater() {
   var waterInput = (parseInt(document.getElementById("input_water_intake").value))
   if (waterInput <= 0 || isNaN(waterInput)) {
     alert("Number needs to be greater than zero")
-    throw new Error("Invalid number. Expected greater than zero");
+    throw new Error("Invalid number. Expected greater than zero")
   } else {
     // PlayAudio()
     var trackWater = document.getElementById("track_water_intake")
@@ -197,20 +197,20 @@ function UpdateWater() {
   }
 }
 
-// play correct gif animation based off user water input 
-function PlayGifAnimation(waterInput) {
-  var gifEl = document.querySelector(".gif-animation")
+// play correct gif animation based on user water input 
+function PlayGifAnimation(totalWater) {
   var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
-  var imgEl = document.createElement("div")
-  if (waterInput = 0) {
-    imgEl.innerHTML = `<img src="/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
-  } else if (waterInput < (userTarget / 3)) {
-    imgEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
+  var gifAnimationEl = document.querySelector(".gif-animation")
+  if (totalWater == 0) {
+    gifAnimationEl.innerHTML = `<img src="/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
+  } else if (totalWater < (userTarget / 3)) {
+    gifAnimationEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
+  } else {
+    gifAnimationEl.innerHTML = `<img src="" />`
   }
-  gifEl.appendChild(imgEl)
 }
 
 // check for change in the 'time picker' every minute
 setInterval(function () {
   ResetDay()
-}, 60000); // 60sec
+}, 60000) // 60sec
