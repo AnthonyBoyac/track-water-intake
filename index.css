@@ -131,6 +131,9 @@ input, button, select {
   display: flex;
   align-items: center;
 }
+.achievement span {
+  margin-left: 5px;
+}
 .fa-star {
   color: #858585;
 }
@@ -238,7 +241,7 @@ h3 {
 }
 img {
   position: absolute;
-  top: 510px;
+  top: 420px;
   right: 420px;
   width: 150px;
 }
