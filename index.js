@@ -61,7 +61,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 1.8/5
+// current daily intake: 2.6/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -90,13 +90,10 @@ function PlayAudio() {
 }
 
 // set daily reset based on time input value
-function TimePicker(e) {
+function TimePicker(el) {
   // select the correct class from which button is clicked
   // note: need second class to select as argument for querySelector
-  var elTargetClass = e.target.className
-  elTargetClass = elTargetClass.split(" ")[1]
-  elTargetClass = document.querySelector("." + elTargetClass)
-  var startTime = elTargetClass.previousElementSibling.previousElementSibling
+  var startTime = el.previousElementSibling.previousElementSibling
   // check if input is empty or not
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
@@ -113,10 +110,10 @@ function TimePicker(e) {
 }
 
 // update user's water target 
-function UserTargetPicker() {
-  var userTargetInput = document.getElementById("user-target")
-  localStorage.setItem("user-target", userTargetInput.value)
-  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput.value
+function UserTargetPicker(el) {
+  var userTargetInput = el.previousElementSibling.previousElementSibling.value
+  localStorage.setItem("user-target", userTargetInput)
+  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput
   document.querySelector(".user-target-container").style.display = "none"
   document.querySelector(".body-info").style.display = "flex"
   document.querySelector(".settings-icons").style.display = "block"

@@ -31,7 +31,12 @@
           <li>
             <span>Change daily reset:</span>
             <input type="time" class="time-picker"><span class="notice">24h format</span>
-            <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(event)">Save</button>
+            <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(this)">Save</button>
+          </li>
+          <li>
+            <span>Change target goal:</span>
+            <input class="target-picker-input" type="number" /><span class="unit-of-measurement">oz</span>
+            <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
           </li>
         </ul>
       </div>
@@ -63,13 +68,13 @@
       <div class="start-of-day-container">
         <span>What time do you wake up?</span>
         <input type="time" class="time-picker"><span class="notice">24h format</span>
-        <button class="time-picker-submit time-picker-form" type="button" onclick="TimePicker(event)">Save</button>
+        <button class="time-picker-submit time-picker-form" type="button" onclick="TimePicker(this)">Save</button>
       </div>
       <div class="user-target-container">
         <span>What is your target goal?</span>
         <div>
-          <input id="user-target" class="target-picker-input" type="number" /><span class="unit-of-measurement">oz</span>
-          <button class="target-picker" type="button" onclick="UserTargetPicker()">Save</button>
+          <input class="target-picker-input" type="number" /><span class="unit-of-measurement">oz</span>
+          <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
         </div>
         <hr>
         <div class="target">
@@ -77,7 +82,6 @@
           <span class="water-rec water-recommendation-men">recommended for male is 125oz</span>
         </div>
       </div>
-
 
       <div class="body-info">
         <div class="preset-container">
