@@ -29,7 +29,7 @@
         </div>
         <ul>
           <li>
-            Switch gender: 
+            Switch biological sex: 
             <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()"><i class="fa-solid fa-venus"></i></button>
             <button class="gender-picker" type="button" onclick="WaterRecommendationMen()"><i class="fa-solid fa-mars"></i></button>
           </li>
@@ -46,19 +46,19 @@
       <h1>Achievements</h3>
         <div class="achievements-list">
           <div class="achievement">
-            <i class="fa-solid fa-star fa-xl"></i>Reach your target goal for the first time!
+            <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the first time!</span>
           </div>
           <div class="achievement">
-            <i class="fa-solid fa-star fa-xl"></i>Achievement 2
+            <i class="fa-solid fa-star fa-xl"></i><span>Achievement 2</span>
           </div>
           <div class="achievement">
-            <i class="fa-solid fa-star fa-xl"></i>Achievement 3
+            <i class="fa-solid fa-star fa-xl"></i><span>Achievement 3</span>
           </div>
           <div class="achievement">
-            <i class="fa-solid fa-star fa-xl"></i>Achievement 4
+            <i class="fa-solid fa-star fa-xl"></i><span>Achievement 4</span>
           </div>
           <div class="achievement">
-            <i class="fa-solid fa-star fa-xl"></i>Achievement 5
+            <i class="fa-solid fa-star fa-xl"></i><span>Achievement 5</span>
           </div>
         </div>
 
@@ -71,7 +71,7 @@
         <button class="time-picker-submit time-picker-form" type="button" onclick="TimePicker(event)"><i class="fa-solid fa-check"></i></button>
       </div>
       <div class="gender-container">
-        <span>What is your biological gender?</span>
+        <span>What is your biological sex?</span>
         <button class="gender-picker" type="button" onclick="WaterRecommendationWomen()">
           <i class="fa-solid fa-venus"></i></button>
         <button class="gender-picker" type="button" onclick="WaterRecommendationMen()">
@@ -102,14 +102,15 @@
           </div>
           <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
           <div>
-            <span class="water-rec water-recommendation-men">Recommended for men: 125oz</span>
-            <span class="water-rec water-recommendation-women">Recommended for women: 91oz</span>
+            <span class="water-rec water-recommendation-men">Recommended for male: 125oz</span>
+            <span class="water-rec water-recommendation-women">Recommended for female: 91oz</span>
+            <span>Your target goal: <span class="water-rec--user-target">100</span></span>
           </div>
         </div>
       </div>
-      <img src="/sprite-puddle_slime.gif" alt="puddle slime sprite" />
+      <div class="gif-animation">
+      </div>
     </div>
-
   </div>
 </body>
 
