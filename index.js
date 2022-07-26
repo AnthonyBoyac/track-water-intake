@@ -8,6 +8,8 @@ localStorage.clear()
 const CURRENT_DATE = new Date()
 var resetNextDay = new Date()
 resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
+// check if user saw slime animation transition from zero to greater than 0
+var gifTransitionSeen = false
 
 function ResetDay() {
   if (localStorage.getItem("dayReset") != null) {
@@ -21,6 +23,7 @@ function ResetDay() {
       document.getElementById("track_water_intake").innerHTML = 0
       dayReset.setDate(dayReset.getDate() + 1)
       localStorage.setItem("dayReset", dayReset)
+      localStorage.removeItem("gifAnimation")
     }
   } else {
     document.querySelector(".start-of-day-container").style.visibility = "visible"
@@ -68,7 +71,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 4.5/5
+// current daily intake: 1/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -177,14 +180,24 @@ function WaterUpdate() {
 function PlayGifAnimation(totalWater) {
   var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
   var gifAnimationEl = document.querySelector(".gif-animation")
-  if (totalWater < (userTarget / 3)) {
-    gifAnimationEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
+  // if slime transition animation has not been seen
+  if (localStorage.getItem("slimeAnimationTransition") == null) {
+    gifAnimationEl.innerHTML = `<img src="/slime-zero-to-struggle.gif" alt="zero to struggle puddle slime animation transition" />`
+    setTimeout(checkAnimationSpeed, 2900)
+    localStorage.setItem("slimeAnimationTransition", "seen")
   } else {
-    gifAnimationEl.innerHTML = `<img src="" />`
+    checkAnimationSpeed()
   }
-  localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
-  gifAnimationEl.style.display = "block"
-  console.log(gifAnimationEl.innerHTML)
+
+  function checkAnimationSpeed() {
+    if (totalWater < (userTarget / 3)) {
+      gifAnimationEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
+    } else {
+      gifAnimationEl.innerHTML = `<img src="" />`
+    }
+    localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
+    gifAnimationEl.style.display = "block"
+  }
 }
 
 // check for change in the 'time picker' every minute
