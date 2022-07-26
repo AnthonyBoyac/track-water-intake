@@ -182,7 +182,7 @@ function PlayGifAnimation(totalWater) {
   var gifAnimationEl = document.querySelector(".gif-animation")
   // if slime transition animation has not been seen
   if (localStorage.getItem("slimeAnimationTransition") == null) {
-    gifAnimationEl.innerHTML = `<img src="/slime-zero-to-struggle.gif" alt="zero to struggle puddle slime animation transition" />`
+    gifAnimationEl.innerHTML = `<img src="/animations/slime-zero-to-struggle.gif" alt="zero to struggle puddle slime animation transition" />`
     setTimeout(checkAnimationSpeed, 2900)
     localStorage.setItem("slimeAnimationTransition", "seen")
   } else {
@@ -191,7 +191,7 @@ function PlayGifAnimation(totalWater) {
 
   function checkAnimationSpeed() {
     if (totalWater < (userTarget / 3)) {
-      gifAnimationEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
+      gifAnimationEl.innerHTML = `<img src="/animations/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
     } else {
       gifAnimationEl.innerHTML = `<img src="" />`
     }
