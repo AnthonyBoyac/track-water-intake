@@ -71,7 +71,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 1/5
+// current daily intake: 3/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -190,9 +190,13 @@ function PlayGifAnimation(totalWater) {
   }
 
   function checkAnimationSpeed() {
-    if (totalWater < (userTarget / 3)) {
-      gifAnimationEl.innerHTML = `<img src="/animations/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
-    } else {
+    if (totalWater < (userTarget / 3)) { // 1%-33%
+      gifAnimationEl.innerHTML = `<img src="/animations/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime; 1% to 33%" />`
+    } else if ((totalWater >= 1) && (totalWater < (userTarget * (2/3)))) { // 33%-66%
+      gifAnimationEl.innerHTML = `<img src="/animations/slime-thirtythree-sixtysix.gif" alt="happy but struggling a bit; 33% to 66% full" />`
+    } else if ((totalWater >= (userTarget * (2/3))) && (totalWater < userTarget)) { // 66%-99%
+      gifAnimationEl.innerHTML = `<img src="/animations/slime-sixtysix-ninetynine.gif" alt="hydrated but is an idiot; 66% to 99% full" />`
+    } else { // 100%
       gifAnimationEl.innerHTML = `<img src="" />`
     }
     localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
