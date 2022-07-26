@@ -51,8 +51,8 @@ input, button, select {
   width: 18px;
   padding: 10px;
 }
-.settings-close li {
-  margin-top: 1.5rem;
+.settings-container li {
+  margin: 1rem 0;
 }
 .settings-container {
   width: 40%;
@@ -271,4 +271,7 @@ img {
 select {
   min-width: 9em;
   padding: 0 15px 0 4px;
+}
+.gif-animation {
+  display: none;
 }
