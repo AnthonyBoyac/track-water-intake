@@ -1,6 +1,7 @@
 localStorage.clear()
-//TODO: optimze everything
+//TODO: optimize this file
 //TODO: add workable achievements
+//TODO: add slime animations
 /*
  * START - Runs on load time
  */
@@ -56,12 +57,18 @@ for (var i = 0; i < localStorage.length; i++) {
   }
 }
 
+var gifAnimation = document.querySelector(".gif-animation")
+if (localStorage.getItem("gifAnimation") != null) {
+  gifAnimation.innerHTML = localStorage.getItem("gifAnimation")
+}
+gifAnimation.style.display = "block"
+
 if (presets.length > 0) {
   presetOptions.style.visibility = "visible"
   OnSelectChange()
 }
 
-// current daily intake: 2.6/5
+// current daily intake: 4.5/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -150,7 +157,7 @@ function AddPreset() {
 }
 
 // update current water total based on user's input
-function UpdateWater() {
+function WaterUpdate() {
   var waterInput = (parseInt(document.getElementById("input_water_intake").value))
   if (waterInput <= 0 || isNaN(waterInput)) {
     alert("Number needs to be greater than zero")
@@ -170,13 +177,14 @@ function UpdateWater() {
 function PlayGifAnimation(totalWater) {
   var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
   var gifAnimationEl = document.querySelector(".gif-animation")
-  if (totalWater == 0) {
-    gifAnimationEl.innerHTML = `<img src="/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
-  } else if (totalWater < (userTarget / 3)) {
+  if (totalWater < (userTarget / 3)) {
     gifAnimationEl.innerHTML = `<img src="/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime" />`
   } else {
     gifAnimationEl.innerHTML = `<img src="" />`
   }
+  localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
+  gifAnimationEl.style.display = "block"
+  console.log(gifAnimationEl.innerHTML)
 }
 
 // check for change in the 'time picker' every minute
