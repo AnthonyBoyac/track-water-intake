@@ -240,6 +240,10 @@ input, button, select {
   border: 3px solid #f27f7f;
   background: #f27e7c;
 }
+#undo_water {
+  font-size: 1.05rem;
+  margin-left: 1.2rem;
+}
 .user-target-container {
   display: none;
 }
