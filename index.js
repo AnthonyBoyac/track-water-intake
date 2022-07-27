@@ -1,7 +1,8 @@
-localStorage.clear()
+// localStorage.clear()
 //TODO: optimize this file
 //TODO: add workable achievements
 //TODO: add slime animations
+//TODO: add a 'undo' button for water intake
 /*
  * START - Runs on load time
  */
@@ -71,7 +72,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 3/5
+// current daily intake: 1/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -197,7 +198,7 @@ function PlayGifAnimation(totalWater) {
     } else if ((totalWater >= (userTarget * (2/3))) && (totalWater < userTarget)) { // 66%-99%
       gifAnimationEl.innerHTML = `<img src="/animations/slime-sixtysix-ninetynine.gif" alt="hydrated but is an idiot; 66% to 99% full" />`
     } else { // 100%
-      gifAnimationEl.innerHTML = `<img src="" />`
+      gifAnimationEl.innerHTML = `<img src="/animations/slime-hundred.gif" alt="happy to be whole again; 100% full" />`
     }
     localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
     gifAnimationEl.style.display = "block"
