@@ -162,7 +162,7 @@ function AddPreset() {
 
 // update current water total based on user's input
 function WaterUpdate() {
-  var waterInput = (parseInt(document.getElementById("input_water_intake").value))
+  let waterInput = (parseInt(document.getElementById("input_water_intake").value))
   if (waterInput <= 0 || isNaN(waterInput)) {
     alert("Number needs to be greater than zero")
     throw new Error("Invalid number. Expected greater than zero")
@@ -173,8 +173,21 @@ function WaterUpdate() {
     var total = waterInput + totalWaterInput
     trackWater.innerHTML = total
     localStorage.setItem("dailyIntake", total)
+    sessionStorage.setItem("lastIntake", waterInput)
+    document.getElementById("undo_water").removeAttribute("disabled")
     PlayGifAnimation(total)
   }
+}
+
+// undo latest water update
+function WaterUndo() {
+  let waterInput = parseInt(sessionStorage.getItem("lastIntake"))
+  let totalWaterIntake = document.getElementById("track_water_intake")
+  let remainingWater = parseInt(totalWaterIntake.innerHTML) - waterInput
+  totalWaterIntake.innerHTML = remainingWater
+  localStorage.setItem("dailyIntake", remainingWater)
+  sessionStorage.removeItem("lastIntake")
+  document.getElementById("undo_water").setAttribute("disabled", true)
 }
 
 // play correct gif animation based on user water input 
