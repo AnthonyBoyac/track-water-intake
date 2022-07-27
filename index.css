@@ -264,9 +264,9 @@ h3 {
 }
 img {
   position: absolute;
-  top: 420px;
-  right: 420px;
-  width: 150px;
+  bottom: 40px;
+  left: 9.5%;
+  width: 190px;
 }
 #input_water_intake {
   margin-right: 2px;
