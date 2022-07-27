@@ -244,6 +244,10 @@ input, button, select {
   font-size: 1.05rem;
   margin-left: 1.2rem;
 }
+:disabled {
+  background-color: #9b9b9b;
+  border: 3px solid #9b9b9b;
+}
 .user-target-container {
   display: none;
 }
