@@ -1,8 +1,6 @@
 // localStorage.clear()
 //TODO: optimize this file
 //TODO: add workable achievements
-//TODO: add slime animations
-//TODO: add a 'undo' button for water intake
 /*
  * START - Runs on load time
  */
@@ -72,7 +70,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 1/5
+// current daily intake: 3/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -95,10 +93,19 @@ settingsCloseIcon.addEventListener("click", function () {
  * END - Runs on load time
  */
 
+var audioSlider = document.getElementById("audio-slider")
+var victoryAudio = document.getElementById("test-audio")
+// change audio volume based on slider input
+audioSlider.addEventListener("input", function () {
+  victoryAudio.volume = (audioSlider.value / 100)
+})
+
 // play audio when certain condition are met
+// TODO: randomize which audio is played when drinking
 function PlayAudio() {
-  document.getElementById("test-audio").play()
+  victoryAudio.play()
 }
+
 
 // set daily reset based on time input value
 function TimePicker(el) {
@@ -167,7 +174,7 @@ function WaterUpdate() {
     alert("Number needs to be greater than zero")
     throw new Error("Invalid number. Expected greater than zero")
   } else {
-    // PlayAudio()
+    PlayAudio()
     var trackWater = document.getElementById("track_water_intake")
     var totalWaterInput = (parseInt(trackWater.innerHTML))
     var total = waterInput + totalWaterInput
@@ -179,7 +186,7 @@ function WaterUpdate() {
   }
 }
 
-// undo latest water update
+// undo last water update, then disable button until next update
 function WaterUndo() {
   let waterInput = parseInt(sessionStorage.getItem("lastIntake"))
   let totalWaterIntake = document.getElementById("track_water_intake")
@@ -188,6 +195,7 @@ function WaterUndo() {
   localStorage.setItem("dailyIntake", remainingWater)
   sessionStorage.removeItem("lastIntake")
   document.getElementById("undo_water").setAttribute("disabled", true)
+  PlayGifAnimation(remainingWater)
 }
 
 // play correct gif animation based on user water input 
@@ -217,6 +225,9 @@ function PlayGifAnimation(totalWater) {
     gifAnimationEl.style.display = "block"
   }
 }
+
+// update achievements based on progress
+
 
 // check for change in the 'time picker' every minute
 setInterval(function () {
