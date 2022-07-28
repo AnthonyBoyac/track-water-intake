@@ -1,4 +1,3 @@
-//TODO: optimize this file
 /*
  * START - Runs on load time
  */
