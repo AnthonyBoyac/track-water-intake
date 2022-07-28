@@ -1,6 +1,4 @@
-// localStorage.clear()
 //TODO: optimize this file
-//TODO: add workable achievements
 /*
  * START - Runs on load time
  */
@@ -9,6 +7,11 @@ var resetNextDay = new Date()
 resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
 // check if user saw slime animation transition from zero to greater than 0
 var gifTransitionSeen = false
+
+var achievement_targetGoal = "achievement_targetGoal"
+if (localStorage.getItem(achievement_targetGoal) == null) {
+  localStorage.setItem(achievement_targetGoal, "0")
+}
 
 function ResetDay() {
   if (localStorage.getItem("dayReset") != null) {
@@ -23,6 +26,7 @@ function ResetDay() {
       dayReset.setDate(dayReset.getDate() + 1)
       localStorage.setItem("dayReset", dayReset)
       localStorage.removeItem("gifAnimation")
+      localStorage.setItem("dailyTargetReached", "false")
     }
   } else {
     document.querySelector(".start-of-day-container").style.visibility = "visible"
@@ -32,6 +36,36 @@ function ResetDay() {
   }
 }
 ResetDay()
+
+var achievementLockedColor = "#858585"
+var achievementUnlockedColor = "#ddd410"
+// if user has unlocked any achievement, display them as unlocked
+function CheckUnlockedAchievements() {
+  // 'target goal' achievement
+  document.querySelectorAll(".achieve-target-goal").forEach((entry) => {
+    let updateEl = entry.children[0]
+    if (entry.getAttribute("goalReached") <= localStorage.getItem(achievement_targetGoal)) {
+      updateEl.style.color = achievementUnlockedColor
+    } else {
+      updateEl.style.color = achievementLockedColor
+    }
+  })
+  // 'slime animation' achievement
+  let slimeEl = document.querySelector(".all-slime-animation").children[0]
+  let counter = 0
+  for (let i = 1; i <= 4; i++) {
+    let el = "slimeAnimation" + i
+    if (localStorage.getItem(el) == "seen") {
+      counter++
+    }
+  }
+  if (counter == 4) {
+    slimeEl.style.color = achievementUnlockedColor
+  } else {
+    slimeEl.style.color = achievementLockedColor
+  }
+}
+CheckUnlockedAchievements()
 
 // retrieve user's daily target goal for water intake
 var userTargetPicked = localStorage.getItem("user-target")
@@ -70,7 +104,7 @@ if (presets.length > 0) {
   OnSelectChange()
 }
 
-// current daily intake: 3/5
+// current daily intake: 1.5/5
 
 // open settings menu when clicking on gear icon
 var settings = document.querySelector(".settings-icons")
@@ -205,28 +239,47 @@ function PlayGifAnimation(totalWater) {
   // if slime transition animation has not been seen
   if (localStorage.getItem("slimeAnimationTransition") == null) {
     gifAnimationEl.innerHTML = `<img src="/animations/slime-zero-to-struggle.gif" alt="zero to struggle puddle slime animation transition" />`
-    setTimeout(checkAnimationSpeed, 2900)
+    setTimeout(UpdateAnimations, 2900)
     localStorage.setItem("slimeAnimationTransition", "seen")
   } else {
-    checkAnimationSpeed()
+    UpdateAnimations()
   }
-
-  function checkAnimationSpeed() {
+  // 
+  function UpdateAnimations() {
+    // change slime animation based on the percentage between ...
+    // ... 'today water intake' and 'target goal' as seen below
     if (totalWater < (userTarget / 3)) { // 1%-33%
       gifAnimationEl.innerHTML = `<img src="/animations/slime-zero_to_thirtythree-part2.gif" alt="low on water puddle slime; 1% to 33%" />`
+      // check if animation has been seen before (achivement purposes)
+      if (localStorage.getItem("slimeAnimation1") == null) {
+        localStorage.setItem("slimeAnimation1", "seen")
+      }
     } else if ((totalWater >= 1) && (totalWater < (userTarget * (2/3)))) { // 33%-66%
       gifAnimationEl.innerHTML = `<img src="/animations/slime-thirtythree-sixtysix.gif" alt="happy but struggling a bit; 33% to 66% full" />`
+      if (localStorage.getItem("slimeAnimation2") == null) {
+        localStorage.setItem("slimeAnimation2", "seen")
+      }
     } else if ((totalWater >= (userTarget * (2/3))) && (totalWater < userTarget)) { // 66%-99%
       gifAnimationEl.innerHTML = `<img src="/animations/slime-sixtysix-ninetynine.gif" alt="hydrated but is an idiot; 66% to 99% full" />`
+      if (localStorage.getItem("slimeAnimation3") == null) {
+        localStorage.setItem("slimeAnimation3", "seen")
+      }
     } else { // 100%
       gifAnimationEl.innerHTML = `<img src="/animations/slime-hundred.gif" alt="happy to be whole again; 100% full" />`
+      if (localStorage.getItem("slimeAnimation4") == null) {
+        localStorage.setItem("slimeAnimation4", "seen")
+      }
+      // update 'target goal' achievement (limit once per day)
+      if (localStorage.getItem("dailyTargetReached") != "true") {
+        localStorage.setItem("dailyTargetReached", "true")
+        localStorage.setItem(achievement_targetGoal, parseInt(localStorage.getItem(achievement_targetGoal) + 1))
+      }
     }
     localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
     gifAnimationEl.style.display = "block"
+    CheckUnlockedAchievements()
   }
 }
-
-// update achievements based on progress
 
 
 // check for change in the 'time picker' every minute
