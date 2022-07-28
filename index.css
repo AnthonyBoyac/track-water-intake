@@ -135,9 +135,6 @@ input, button, select {
 .achievement span {
   margin-left: 5px;
 }
-.fa-star {
-  color: #858585;
-}
 .start-of-day-container {
   visibility: hidden;
 }
