@@ -262,6 +262,14 @@ input, button, select {
 .user-target-container {
   display: none;
 }
+.water-bottle {
+  height: 200px;
+}
+.gif-animation img {
+  width: 180px;
+  left: 9.9%;
+  border-radius: 18px;
+}
 h1 {
   font-family: 'Sansita Swashed', 'cursive', sans-serif;
   letter-spacing: 0.1rem;
