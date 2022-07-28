@@ -204,15 +204,16 @@ function AddPreset() {
     alert("You've reached the maximum number of preset")
     throw new Error("The maximum number of preset is exceeded")
   }
-  if (presetOptions.classList.contains("hidden")) {
-    presetOptions.style.visibility = "visible"
-  }
   var presetName = document.getElementById("preset-name")
   var presetSize = document.getElementById("preset-size")
   if (presetName.value === "" || presetSize.value === "") {
     alert("Please fill out both inputs")
     throw new Error("You need to fill out both inputs")
   }
+  if (presetOptions.classList.contains("hidden")) {
+    presetOptions.style.visibility = "visible"
+  }
+
     var option = document.createElement("option")
     option.innerHTML = `
       <option value="${presetName.value}">
