@@ -132,9 +132,9 @@ var settingsCloseIcon = document.querySelector(".fa-xmark")
 settingsCloseIcon.addEventListener("click", function () {
   settings.style.display = "none"
 })
-/*
+/* --------------------------------------------------------
  * END - Runs on load time
- */
+ */ 
 
 
 /*
@@ -146,7 +146,11 @@ var victoryAudio = document.getElementById("test-audio")
 audioSlider.addEventListener("input", function () {
   victoryAudio.volume = (audioSlider.value / 100)
 })
-
+// mute audio
+document.querySelector(".mute-audio").addEventListener("click", function() {
+  victoryAudio.volume = 0
+  audioSlider.value = 0
+})
 // play audio when certain condition are met
 function PlayAudio() {
   victoryAudio.play()
