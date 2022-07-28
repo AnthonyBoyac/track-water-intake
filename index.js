@@ -5,33 +5,44 @@
 const CURRENT_DATE = new Date()
 var resetNextDay = new Date()
 resetNextDay.setDate(CURRENT_DATE.getDate() + 1)
-// check if user saw slime animation transition from zero to greater than 0
+// check if user saw slime animation transition from zero to greater than zero
 var gifTransitionSeen = false
 
 var achievement_targetGoal = "achievement_targetGoal"
 if (localStorage.getItem(achievement_targetGoal) == null) {
   localStorage.setItem(achievement_targetGoal, "0")
 }
+// variables for localStorage items
+var dayResetStorage = "dayReset"
+var dailyIntakeStorage = "dailyIntake"
+var gifAnimationStorage = "gifAnimation"
+var userTargetStorage = "user-target"
+var dailyTargetReachedStorage = "dailyTargetReached"
+// other variables
+var startOfDayContainer = ".start-of-day-container"
+var waterTracker = "track_water_intake"
+var waterRecTarget = document.querySelector(".water-rec--user-target")
+var settingsIcons = document.querySelector(".settings-icons")
 
 function ResetDay() {
-  if (localStorage.getItem("dayReset") != null) {
-    document.querySelector(".start-of-day-container").style.visibility = "hidden"
-    let dayReset = localStorage.getItem("dayReset")
+  if (localStorage.getItem(dayResetStorage) != null) {
+    document.querySelector(startOfDayContainer).style.visibility = "hidden"
+    let dayReset = localStorage.getItem(dayResetStorage)
     // convert localStorage string back to Date object
     dayReset = new Date(dayReset)
     // if today's date is after daily reset set by user, reset daily water input
     // AND update dayReset to next day at same time
     if (CURRENT_DATE > dayReset) {
-      document.getElementById("track_water_intake").innerHTML = 0
+      document.getElementById(waterTracker).innerHTML = 0
       dayReset.setDate(dayReset.getDate() + 1)
-      localStorage.setItem("dayReset", dayReset)
-      localStorage.removeItem("gifAnimation")
-      localStorage.setItem("dailyTargetReached", "false")
+      localStorage.setItem(dayResetStorage, dayReset)
+      localStorage.removeItem(gifAnimationStorage)
+      localStorage.setItem(dailyTargetReachedStorage, "false")
     }
   } else {
-    document.querySelector(".start-of-day-container").style.visibility = "visible"
+    document.querySelector(startOfDayContainer).style.visibility = "visible"
   }
-  if (localStorage.getItem("user-target") != null) {
+  if (localStorage.getItem(userTargetStorage) != null) {
     document.querySelector(".body-info").style.display = "flex"
   }
 }
@@ -68,18 +79,20 @@ function CheckUnlockedAchievements() {
 CheckUnlockedAchievements()
 
 // retrieve user's daily target goal for water intake
-var userTargetPicked = localStorage.getItem("user-target")
+var userTargetPicked = localStorage.getItem(userTargetStorage)
 if (userTargetPicked != null) {
-  document.querySelector(".water-rec--user-target").innerHTML = userTargetPicked
-  document.querySelector(".settings-icons").style.display = "block"
+  waterRecTarget.innerHTML = userTargetPicked
+  settingsIcons.style.display = "block"
 }
+// set or retrieve user's current daily water intake
+if (localStorage.getItem(dailyIntakeStorage) === null) {
+  localStorage.setItem(dailyIntakeStorage, "0")
+}
+document.getElementById(waterTracker).innerHTML = localStorage.getItem(dailyIntakeStorage)
 
+// retrieve presets if there are any
 var presets = document.getElementById("presets")
 var presetOptions = document.querySelector(".preset-options")
-if (localStorage.getItem("dailyIntake") === null) {
-  localStorage.setItem("dailyIntake", "0")
-}
-document.getElementById("track_water_intake").innerHTML = localStorage.getItem("dailyIntake")
 for (var i = 0; i < localStorage.length; i++) {
   if (localStorage.key(i).includes("preset")) {
     let option = document.createElement("option")
@@ -92,41 +105,42 @@ for (var i = 0; i < localStorage.length; i++) {
     presets.appendChild(option)
   }
 }
-
-var gifAnimation = document.querySelector(".gif-animation")
-if (localStorage.getItem("gifAnimation") != null) {
-  gifAnimation.innerHTML = localStorage.getItem("gifAnimation")
-}
-gifAnimation.style.display = "block"
-
+// show presets options if there are any
 if (presets.length > 0) {
   presetOptions.style.visibility = "visible"
   OnSelectChange()
 }
+// show correct slime animation if one is stored in localStorage
+var gifAnimation = document.querySelector(".gif-animation")
+if (localStorage.getItem(gifAnimationStorage) != null) {
+  gifAnimation.innerHTML = localStorage.getItem(gifAnimationStorage)
+}
+gifAnimation.style.display = "block"
 
-// current daily intake: 1.5/5
-
+var settings = document.getElementById("settings")
 // open settings menu when clicking on gear icon
-var settings = document.querySelector(".settings-icons")
-settings.addEventListener("click", function () {
-  document.getElementById("settings").style.display = "block"
+settingsIcons.addEventListener("click", function () {
+  settings.style.display = "block"
 })
-// close settings menu on outside click
+// close settings menu on clicking outside container
 document.addEventListener("mouseup", function(e) {
-  var container = document.getElementById("settings")
-  if (!container.contains(e.target)) {
-      container.style.display = "none"
+  if (!settings.contains(e.target)) {
+    settings.style.display = "none"
   }
 })
 // close menu when clicking on x icon
 var settingsCloseIcon = document.querySelector(".fa-xmark")
 settingsCloseIcon.addEventListener("click", function () {
-  document.getElementById("settings").style.display = "none"
+  settings.style.display = "none"
 })
 /*
  * END - Runs on load time
  */
 
+
+/*
+ * BEGIN - List of functions and event listeners
+ */ 
 var audioSlider = document.getElementById("audio-slider")
 var victoryAudio = document.getElementById("test-audio")
 // change audio volume based on slider input
@@ -135,18 +149,15 @@ audioSlider.addEventListener("input", function () {
 })
 
 // play audio when certain condition are met
-// TODO: randomize which audio is played when drinking
 function PlayAudio() {
   victoryAudio.play()
 }
-
 
 // set daily reset based on time input value
 function TimePicker(el) {
   // select the correct class from which button is clicked
   // note: need second class to select as argument for querySelector
   var startTime = el.previousElementSibling.previousElementSibling
-  // check if input is empty or not
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
   }
@@ -155,20 +166,24 @@ function TimePicker(el) {
   resetNextDay.setHours(startTimeArr[0])
   resetNextDay.setMinutes(startTimeArr[1])
   resetNextDay.setSeconds(0)
-  localStorage.setItem("dayReset", resetNextDay)
+  localStorage.setItem(dayResetStorage, resetNextDay)
 
-  document.querySelector(".start-of-day-container").style.visibility = "hidden"
+  document.querySelector(startOfDayContainer).style.visibility = "hidden"
   document.querySelector(".user-target-container").style.display = "block"
 }
 
 // update user's water target 
 function UserTargetPicker(el) {
   var userTargetInput = el.previousElementSibling.previousElementSibling.value
-  localStorage.setItem("user-target", userTargetInput)
-  document.querySelector(".water-rec--user-target").innerHTML = userTargetInput
+  if (userTargetInput === "" || userTargetInput < 50) {
+    alert("Please enter a number greater than 50")
+    throw new Error("Expected input to be greater than or equal to 50")
+  }
+  localStorage.setItem(userTargetStorage, userTargetInput)
+  waterRecTarget.innerHTML = userTargetInput
   document.querySelector(".user-target-container").style.display = "none"
   document.querySelector(".body-info").style.display = "flex"
-  document.querySelector(".settings-icons").style.display = "block"
+  settingsIcons.style.display = "block"
 }
 
 // update water input value based on selected preset
@@ -178,7 +193,7 @@ function OnSelectChange() {
   document.getElementById("input_water_intake").value = selectedValue
 }
 
-// add preset to the list and localStorage
+// add presets to the list and localStorage, and display them accordingly
 function AddPreset() {
   if (presetOptions.classList.contains("hidden")) {
     presetOptions.style.visibility = "visible"
@@ -209,11 +224,11 @@ function WaterUpdate() {
     throw new Error("Invalid number. Expected greater than zero")
   } else {
     PlayAudio()
-    var trackWater = document.getElementById("track_water_intake")
+    var trackWater = document.getElementById(waterTracker)
     var totalWaterInput = (parseInt(trackWater.innerHTML))
     var total = waterInput + totalWaterInput
     trackWater.innerHTML = total
-    localStorage.setItem("dailyIntake", total)
+    localStorage.setItem(dailyIntakeStorage, total)
     sessionStorage.setItem("lastIntake", waterInput)
     document.getElementById("undo_water").removeAttribute("disabled")
     PlayGifAnimation(total)
@@ -226,7 +241,7 @@ function WaterUndo() {
   let totalWaterIntake = document.getElementById("track_water_intake")
   let remainingWater = parseInt(totalWaterIntake.innerHTML) - waterInput
   totalWaterIntake.innerHTML = remainingWater
-  localStorage.setItem("dailyIntake", remainingWater)
+  localStorage.setItem(dailyIntakeStorage, remainingWater)
   sessionStorage.removeItem("lastIntake")
   document.getElementById("undo_water").setAttribute("disabled", true)
   PlayGifAnimation(remainingWater)
@@ -234,7 +249,7 @@ function WaterUndo() {
 
 // play correct gif animation based on user water input 
 function PlayGifAnimation(totalWater) {
-  var userTarget = parseInt(document.querySelector(".water-rec--user-target").innerHTML)
+  var userTarget = parseInt(waterRecTarget.innerHTML)
   var gifAnimationEl = document.querySelector(".gif-animation")
   // if slime transition animation has not been seen
   if (localStorage.getItem("slimeAnimationTransition") == null) {
@@ -270,19 +285,22 @@ function PlayGifAnimation(totalWater) {
         localStorage.setItem("slimeAnimation4", "seen")
       }
       // update 'target goal' achievement (limit once per day)
-      if (localStorage.getItem("dailyTargetReached") != "true") {
-        localStorage.setItem("dailyTargetReached", "true")
+      if (localStorage.getItem(dailyTargetReachedStorage) != "true") {
+        localStorage.setItem(dailyTargetReachedStorage, "true")
         localStorage.setItem(achievement_targetGoal, parseInt(localStorage.getItem(achievement_targetGoal) + 1))
       }
     }
-    localStorage.setItem("gifAnimation", gifAnimationEl.innerHTML)
+    localStorage.setItem(gifAnimationStorage, gifAnimationEl.innerHTML)
     gifAnimationEl.style.display = "block"
     CheckUnlockedAchievements()
   }
 }
 
-
-// check for change in the 'time picker' every minute
+// check for change in the 'time picker' every minute to see if we need to reset the day
 setInterval(function () {
   ResetDay()
 }, 60000) // 60sec
+
+/*
+ * END - list of functions and event listeners
+ */
