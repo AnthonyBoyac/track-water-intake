@@ -23,7 +23,7 @@ Users can:
 5. click `Undo` to reduce today's water intake from the last input
 6. change audio volume when clicking `Drink`
 
-### Finaly
+### Finally
 - I added animations to play every increment of today's water intake relative to the target goal
 - Because I'm an *achievement hunter,* I added a few achievements :D 
 
