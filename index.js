@@ -198,6 +198,12 @@ function OnSelectChange() {
 
 // add presets to the list and localStorage, and display them accordingly
 function AddPreset() {
+  let selectEl = document.getElementById("presets")
+  // limit the number of preset to 6 per user
+  if (selectEl.length == 6) {
+    alert("You've reached the maximum number of preset")
+    throw new Error("The maximum number of preset is exceeded")
+  }
   if (presetOptions.classList.contains("hidden")) {
     presetOptions.style.visibility = "visible"
   }
