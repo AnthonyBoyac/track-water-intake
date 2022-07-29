@@ -18,7 +18,7 @@ html {
 body {
   text-align: center;
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin: 0;
 }
 input, button, select {
@@ -103,8 +103,8 @@ input, button, select {
 }
 .fa-droplet {
   color: #1a93fc;
-  top: 8px;
-  right: -33px;
+  top: 6px;
+  right: -36px;
   z-index: 10;
 }
 .body-container {
@@ -162,6 +162,7 @@ input, button, select {
 .start-of-day-container, 
 .user-target-container {
   position: relative;
+  font-size: 1.3em;
   width: fit-content;
   margin: .5rem auto;
   padding: .65rem;
@@ -172,8 +173,8 @@ input, button, select {
   color: #d2d2d2;
 }
 .start-of-day-container .notice {
-  top: 37px;
-  right: 89px;
+  top: 47px;
+  right: 105px;
 }
 #settings .notice {
   top: 93px;
@@ -214,7 +215,7 @@ input, button, select {
 .preset-container, .water-intake-container {
   margin: 1rem;
   padding: 1rem;
-  min-height: 14rem;
+  min-height: 16rem;
 }
 .preset-addition {
   display: grid;
@@ -263,10 +264,11 @@ input, button, select {
   display: none;
 }
 .water-bottle {
-  height: 200px;
+  height: 350px;
 }
 .gif-animation img {
   width: 180px;
+  height: 300px;
   left: 9.9%;
   border-radius: 18px;
 }
