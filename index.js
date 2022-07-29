@@ -132,6 +132,12 @@ var settingsCloseIcon = document.querySelector(".fa-xmark")
 settingsCloseIcon.addEventListener("click", function () {
   settings.style.display = "none"
 })
+
+// start audio at low volume to not scare user ;)
+var victoryAudio = document.getElementById("test-audio")
+var audioSlider = document.getElementById("audio-slider")
+victoryAudio.volume = 0.1
+audioSlider.value = 10
 /* --------------------------------------------------------
  * END - Runs on load time
  */ 
@@ -140,8 +146,6 @@ settingsCloseIcon.addEventListener("click", function () {
 /*
  * BEGIN - List of functions and event listeners
  */ 
-var audioSlider = document.getElementById("audio-slider")
-var victoryAudio = document.getElementById("test-audio")
 // change audio volume based on slider input
 audioSlider.addEventListener("input", function () {
   victoryAudio.volume = (audioSlider.value / 100)
