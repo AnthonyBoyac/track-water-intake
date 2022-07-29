@@ -1,5 +1,5 @@
 ## GOAL
-- **Track your daily water intake in a *fun* way** : [view website here!](https://majestic-scone-a671ba.netlify.app)
+- **Track your daily water intake in a *fun* way** : [view website here!](www.nomumizu.com)
 
 ## Why does it exist?
 - Drinking water is important, but I forget to do it sometimes... most of the time... everyday. There needs to be a fun way to track daily water intake, and existing apps failed to bring out that entertainment. I need to have some level of fun involved to keep using this sort of app, so I designed one :)
