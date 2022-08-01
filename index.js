@@ -31,7 +31,7 @@ function ResetDay() {
     dayReset = new Date(dayReset)
     // if today's date is after daily reset set by user, reset daily water input
     // AND update dayReset to next day at same time
-    if (CURRENT_DATE > dayReset) {
+    if (CURRENT_DATE < dayReset) {
       document.getElementById(waterTracker).innerHTML = 0
       dayReset.setDate(dayReset.getDate() + 1)
       localStorage.setItem(dayResetStorage, dayReset)
@@ -45,7 +45,6 @@ function ResetDay() {
     document.querySelector(".body-info").style.display = "flex"
   }
 }
-ResetDay()
 
 var achievementLockedColor = "#858585"
 var achievementUnlockedColor = "#ddd410"
@@ -54,7 +53,9 @@ function CheckUnlockedAchievements() {
   // 'target goal' achievement
   document.querySelectorAll(".achieve-target-goal").forEach((entry) => {
     let updateEl = entry.children[0]
-    if (entry.getAttribute("goalReached") <= localStorage.getItem(achievement_targetGoal)) {
+    let goalReachedInt = parseInt(entry.getAttribute("goalReached"))
+    let targetGoal = parseInt(localStorage.getItem(achievement_targetGoal))
+    if (goalReachedInt <= targetGoal) {
       updateEl.style.color = achievementUnlockedColor
     } else {
       updateEl.style.color = achievementLockedColor
@@ -301,7 +302,10 @@ function PlayGifAnimation(totalWater) {
       // update 'target goal' achievement (limit once per day)
       if (localStorage.getItem(dailyTargetReachedStorage) != "true") {
         localStorage.setItem(dailyTargetReachedStorage, "true")
-        localStorage.setItem(achievement_targetGoal, parseInt(localStorage.getItem(achievement_targetGoal) + 1))
+        let oldTarget = parseInt(localStorage.getItem(achievement_targetGoal))
+        oldTarget += 1
+        console.log(oldTarget)
+        localStorage.setItem(achievement_targetGoal, oldTarget)
       }
     }
     localStorage.setItem(gifAnimationStorage, gifAnimationEl.innerHTML)
@@ -309,6 +313,8 @@ function PlayGifAnimation(totalWater) {
     CheckUnlockedAchievements()
   }
 }
+// need to initially reset the day last so all variables are initiallized and declared
+ResetDay()
 
 // check for change in the 'time picker' every minute to see if we need to reset the day
 setInterval(function () {
