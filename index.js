@@ -31,7 +31,7 @@ function ResetDay() {
     dayReset = new Date(dayReset)
     // if today's date is after daily reset set by user, reset daily water input
     // AND update dayReset to next day at same time
-    if (CURRENT_DATE < dayReset) {
+    if (CURRENT_DATE > dayReset) {
       document.getElementById(waterTracker).innerHTML = 0
       dayReset.setDate(dayReset.getDate() + 1)
       localStorage.setItem(dayResetStorage, dayReset)
