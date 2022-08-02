@@ -24,6 +24,6 @@ They can:
 6. change audio volume when clicking `Drink`
 
 ### Final Points:
-- I added animations to play every increment of today's water intake relative to the target goal
+- I added animations to play at specific increments of: today's water intake relative to the target goal
 - Because I'm an *achievement hunter,* I added a few achievements :D 
 
