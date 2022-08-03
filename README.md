@@ -10,8 +10,8 @@
 - mobile support coming in future updates
 - app is designed using *localStorage,* so users need to use the **same device and browser** if they want their daily activity tracked, more so for achievements (yes, there are achievements)
 
-### Steps
-Users can:
+### What can users do?
+They can:
 1. decide their daily reset time based on their wakeup time
 2. pick their daily target goal (at least 50)
     - there's a recommended amount of water needed, so users have an easier time picking a goal
@@ -23,7 +23,7 @@ Users can:
 5. click `Undo` to reduce today's water intake from the last input
 6. change audio volume when clicking `Drink`
 
-### Finally
-- I added animations to play every increment of today's water intake relative to the target goal
+### Final Points:
+- I added animations to play at specific increments of: today's water intake relative to the target goal
 - Because I'm an *achievement hunter,* I added a few achievements :D 
 
