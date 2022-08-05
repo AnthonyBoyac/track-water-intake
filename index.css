@@ -113,17 +113,13 @@ input, button, select {
   background-color: #00536bab;
   font-family: 'Crimson Text', serif;
 }
-.achievements-container div,
-.preset-container,
-.water-intake-container,
-.user-target-container {
-  border-radius: 10px;
-}
 .start-of-day-container,
 .preset-container,
 .water-intake-container,
-.user-target-container {
+.user-target-container,
+.achievements-container div {
   background-color: #005770;
+  border-radius: 10px;
 }
 .achievements-container {
   float: left;
@@ -149,7 +145,8 @@ input, button, select {
 .achievement span {
   margin-left: 5px;
 }
-.start-of-day-container {
+.start-of-day-container,
+.preset-options.hidden {
   visibility: hidden;
 }
 .start-of-day-container input {
@@ -233,9 +230,6 @@ input, button, select {
 .preset-options {
   margin-top: 1rem;
 }
-.preset-options.hidden {
-  visibility: hidden;
-}
 .water-intake-form input, .water-intake-form button {
   font-size: 1.4rem;
 }
@@ -260,7 +254,8 @@ input, button, select {
   background-color: #9b9b9b;
   border: 3px solid #9b9b9b;
 }
-.user-target-container {
+.user-target-container,
+.gif-animation {
   display: none;
 }
 .water-bottle {
@@ -300,7 +295,4 @@ img {
 select {
   min-width: 9em;
   padding: 0 15px 0 4px;
-}
-.gif-animation {
-  display: none;
 }
