@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Anthony Boyac">
@@ -21,13 +20,12 @@
     <i class="fa-solid fa-volume-xmark mute-audio"></i>
     <input type="range" min="0" max="100" id="audio-slider" />
   </div>
-
   <div class="settings-icons">
     <i class="fa-solid fa-droplet fa-lg"></i>
     <i class="fa-solid fa-gear fa-2xl"></i>
   </div>
   <div class="body-container">
-    <section id="settings">
+    <div id="settings">
       <div class="settings-container">
         <h3>Settings</h3>
         <div class="settings-close">
@@ -36,8 +34,8 @@
         <ul>
           <li>
             <span>Change daily reset:</span>
-            <input type="time" class="time-picker"><span class="notice">24h format</span>
-            <button class="time-picker-submit time-picker-settings" type="button" onclick="TimePicker(this)">Save</button>
+            <input type="time"><span class="notice">24h format</span>
+            <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
           </li>
           <li>
             <span>Change target goal:</span>
@@ -46,8 +44,7 @@
           </li>
         </ul>
       </div>
-    </section>
-
+    </div>
     <div class="achievements-container">
       <h1>Achievements</h3>
         <div class="achievements-list">
@@ -69,8 +66,8 @@
       <h1>Track your daily water intake!</h1>
       <div class="start-of-day-container">
         <span>What time do you wake up?</span>
-        <input type="time" class="time-picker"><span class="notice">24h format</span>
-        <button class="time-picker-submit time-picker-form" type="button" onclick="TimePicker(this)">Save</button>
+        <input type="time"><span class="notice">24h format</span>
+        <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
       </div>
       <div class="user-target-container">
         <span>What is your target goal?</span>
@@ -79,9 +76,9 @@
           <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
         </div>
         <hr>
-        <div class="target">
-          <span class="water-rec water-recommendation-women">recommended for female is 91oz</span><br>
-          <span class="water-rec water-recommendation-men">recommended for male is 125oz</span>
+        <div>
+          <span class="water-rec">recommended for female is 91oz</span><br>
+          <span class="water-rec">recommended for male is 125oz</span>
         </div>
       </div>
       <div class="body-info">
@@ -92,10 +89,10 @@
               <input type="text" id="preset-name" placeholder="name" />
               <input type="number" id="preset-size" placeholder="size (oz)" />
             </div>
-            <button type="button" id="add-preset" onclick="AddPreset()">Add Preset</button>
+            <button type="button" onclick="AddPreset()">Add Preset</button>
           </div>
           <div class="preset-options hidden">
-            Select your preset: <select id="presets" name="presets" onchange="OnSelectChange()"></select>
+            Select your preset: <select id="presets" onchange="OnSelectChange()"></select>
           </div>
         </div>
         <div class="water-intake-container">
@@ -104,8 +101,8 @@
           </div>
           <div class="water-intake-form">
             <input type="number" id="input_water_intake" />oz
-            <button type="button" id="update_water" onclick="WaterUpdate()" name="update_water">Drink!</button>
-            <button type="button" id="undo_water" onclick="WaterUndo()" name="undo_water" disabled>Undo</button>
+            <button type="button" id="update_water" onclick="WaterUpdate()">Drink!</button>
+            <button type="button" id="undo_water" onclick="WaterUndo()" disabled>Undo</button>
           </div>
           <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
           <div>
