@@ -304,7 +304,6 @@ function PlayGifAnimation(totalWater) {
         localStorage.setItem(dailyTargetReachedStorage, "true")
         let oldTarget = parseInt(localStorage.getItem(achievement_targetGoal))
         oldTarget += 1
-        console.log(oldTarget)
         localStorage.setItem(achievement_targetGoal, oldTarget)
       }
     }
