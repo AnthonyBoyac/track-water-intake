@@ -312,10 +312,10 @@ function PlayGifAnimation(totalWater) {
     CheckUnlockedAchievements()
   }
 }
-// need to initially reset the day last so all variables are initiallized and declared
+// wait to reset the day to make sure all variables are initiallized and declared
 ResetDay()
 
-// check for change in the 'time picker' every minute to see if we need to reset the day
+// check for changes in the 'time picker' every minute to see if we need to reset the day
 setInterval(function () {
   ResetDay()
 }, 60000) // 60sec
