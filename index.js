@@ -114,6 +114,8 @@ if (presets.length > 0) {
 var gifAnimation = document.querySelector(".gif-animation")
 if (localStorage.getItem(gifAnimationStorage) != null) {
   gifAnimation.innerHTML = localStorage.getItem(gifAnimationStorage)
+} else {
+  gifAnimation.innerHTML = `<img src="/animations/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
 }
 gifAnimation.style.display = "block"
 
