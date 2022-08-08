@@ -32,20 +32,20 @@ input, button, select {
 }
 .audio-container span {
   position: absolute;
-  left: 44px;
-  top: 52px;
+  right: 60px;
+  top: 455px;
 }
 #audio-slider {
   transform: rotate(270deg);
   position: absolute;
-  left: -10px;
-  top: -30px;
+  right: 5px;
+  top: 370px;
 }
 @-moz-document url-prefix() { 
   .audio-container span {
     position: absolute;
-    left: 59px;
-    top: 67px;
+    right: 75px;
+    top: 470px;
   }
 }
 #settings {
@@ -181,7 +181,7 @@ input, button, select {
   right: 105px;
 }
 #settings .notice {
-  top: 93px;
+  top: 85px;
   right: 105px;
 }
 .target-picker-input {
