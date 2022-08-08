@@ -50,6 +50,8 @@ input, button, select {
 }
 #settings {
   display: none;
+  position: relative;
+  height: 0;
   text-align: left;
   font-size: 1.3rem;
   animation: slideIn .4s ease-out;
@@ -103,6 +105,10 @@ input, button, select {
 .settings-icons i {
   position: relative;
 }
+.success-message {
+  text-align: center;
+  color: #4fcc42;
+}
 .fa-gear {
   color: #6ab6cb;
   top: 10px;
@@ -153,7 +159,7 @@ input, button, select {
   margin-left: 5px;
 }
 .start-of-day-container,
-.preset-options.hidden {
+.hidden {
   visibility: hidden;
 }
 .start-of-day-container input {
