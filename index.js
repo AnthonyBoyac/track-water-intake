@@ -158,9 +158,7 @@ function PlayAudio() {
 // set daily reset based on time input value
 function TimePicker(el) {
   // select the correct class from which button is clicked
-  // note: need second class to select as argument for querySelector
   var startTime = el.previousElementSibling.children[0]
-  console.log(startTime)
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
   }
@@ -170,9 +168,12 @@ function TimePicker(el) {
   resetNextDay.setMinutes(startTimeArr[1])
   resetNextDay.setSeconds(0)
   localStorage.setItem(dayResetStorage, resetNextDay)
-
-  document.querySelector(startOfDayContainer).style.visibility = "hidden"
-  document.querySelector(".user-target-container").style.display = "block"
+  if (localStorage.getItem("dayReset") == null) {
+    document.querySelector(startOfDayContainer).style.visibility = "hidden"
+    document.querySelector(".user-target-container").style.display = "block"
+  } else {
+    showSuccessMessage()
+  }
 }
 
 // update user's water target 
@@ -184,9 +185,13 @@ function UserTargetPicker(el) {
   }
   localStorage.setItem(userTargetStorage, userTargetInput)
   waterRecTarget.innerHTML = userTargetInput
-  document.querySelector(".user-target-container").style.display = "none"
-  document.querySelector(".body-info").style.display = "flex"
-  settingsIcons.style.display = "block"
+  if (localStorage.getItem(userTargetStorage) == null) {
+    document.querySelector(".user-target-container").style.display = "none"
+    document.querySelector(".body-info").style.display = "flex"
+    settingsIcons.style.display = "block"
+  } else {
+    showSuccessMessage()
+  }
 }
 
 // update water input value based on selected preset
@@ -224,6 +229,13 @@ function AddPreset() {
     presets.appendChild(option)
     presetName.value = ""
     presetSize.value = ""
+}
+
+function showSuccessMessage() {
+  document.querySelector(".success-message").classList.remove("hidden")
+  setTimeout(() => {
+    document.querySelector(".success-message").classList.add("hidden")
+  }, 3000)
 }
 
 // update current water total based on user's input
