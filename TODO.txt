@@ -1,1 +1,0 @@
-- add success message when changing 'daily reset' and 'target goal' from settings menu
