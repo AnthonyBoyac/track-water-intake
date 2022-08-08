@@ -1,3 +1,1 @@
 - add success message when changing 'daily reset' and 'target goal' from settings menu
-- fix volume icon in firefox
-- have slime animations function be executed last when initially loading page
