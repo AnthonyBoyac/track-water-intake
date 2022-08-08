@@ -110,14 +110,6 @@ if (presets.length > 0) {
   presetOptions.style.visibility = "visible"
   OnSelectChange()
 }
-// show correct slime animation if one is stored in localStorage
-var gifAnimation = document.querySelector(".gif-animation")
-if (localStorage.getItem(gifAnimationStorage) != null) {
-  gifAnimation.innerHTML = localStorage.getItem(gifAnimationStorage)
-} else {
-  gifAnimation.innerHTML = `<img src="/animations/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
-}
-gifAnimation.style.display = "block"
 
 var settings = document.getElementById("settings")
 // open settings menu when clicking on gear icon
@@ -316,6 +308,15 @@ function PlayGifAnimation(totalWater) {
 }
 // wait to reset the day to make sure all variables are initiallized and declared
 ResetDay()
+
+// show correct slime animation if one is stored in localStorage
+var gifAnimation = document.querySelector(".gif-animation")
+if (localStorage.getItem(gifAnimationStorage) != null) {
+  gifAnimation.innerHTML = localStorage.getItem(gifAnimationStorage)
+} else {
+  gifAnimation.innerHTML = `<img src="/animations/slime-zero.gif" alt="zero water intake = evil sun + dead slime" />`
+}
+gifAnimation.style.display = "block"
 
 // check for changes in the 'time picker' every minute to see if we need to reset the day
 setInterval(function () {
