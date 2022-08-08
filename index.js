@@ -160,6 +160,7 @@ function TimePicker(el) {
   // select the correct class from which button is clicked
   var startTime = el.previousElementSibling.children[0]
   if (startTime.value === "") {
+    alert("Please select a time")
     throw new Error("Expected input to be filled out")
   }
   // split hours and minutes to set the correct time for the date
