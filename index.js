@@ -159,7 +159,8 @@ function PlayAudio() {
 function TimePicker(el) {
   // select the correct class from which button is clicked
   // note: need second class to select as argument for querySelector
-  var startTime = el.previousElementSibling.previousElementSibling
+  var startTime = el.previousElementSibling.children[0]
+  console.log(startTime)
   if (startTime.value === "") {
     throw new Error("Expected input to be filled out")
   }
@@ -176,7 +177,7 @@ function TimePicker(el) {
 
 // update user's water target 
 function UserTargetPicker(el) {
-  var userTargetInput = el.previousElementSibling.previousElementSibling.value
+  var userTargetInput = el.previousElementSibling.children[0].value
   if (userTargetInput === "" || userTargetInput < 50) {
     alert("Please enter a number greater than 50")
     throw new Error("Expected input to be greater than or equal to 50")
