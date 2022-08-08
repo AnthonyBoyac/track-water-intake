@@ -43,7 +43,7 @@
               <label for="time-picker--settings">
                 <input type="time" id="time-picker--settings"><span class="notice">24h format</span>
               </label>
-              <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
+              <button class="time-picker-submit settings" type="button" onclick="TimePicker(this)">Save</button>
             </li>
             <li>
               <span>Change target goal:</span>
@@ -53,6 +53,9 @@
               <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
             </li>
           </ul>
+          <div class="success-message hidden">
+            Updated successfully!
+          </div>
         </div>
       </div>
       <div class="achievements-container">
