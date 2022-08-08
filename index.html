@@ -20,12 +20,6 @@
     <audio id="test-audio">
       <source src="/drank_water.mp3" type="audio/mpeg">
     </audio>
-    <div class="audio-container">
-      <i class="fa-solid fa-volume-xmark mute-audio"></i>
-      <label for="audio-slider">
-        <input type="range" min="0" max="100" id="audio-slider" />
-      </label>
-    </div>
     <div class="settings-icons">
       <i class="fa-solid fa-droplet fa-lg"></i>
       <i class="fa-solid fa-gear fa-2xl"></i>
@@ -128,6 +122,12 @@
             <div>
               <span>Your target goal: <span class="water-rec--user-target"></span>oz</span>
             </div>
+          </div>
+          <div class="audio-container">
+            <span class="fa-solid fa-volume-xmark mute-audio"></span>
+            <label for="audio-slider">
+              <input type="range" min="0" max="100" id="audio-slider" />
+            </label>
           </div>
         </div>
         <img src="/water_bottle.png" class="water-bottle" alt="water bottle overlay"/>
