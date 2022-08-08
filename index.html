@@ -1,129 +1,139 @@
-<!DOCTYPE html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Anthony Boyac">
-  <meta name="description" content="Fun app to track your daily water intake (with achievements ^_^)">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Drink!!</title>
-  <link rel="stylesheet" href="/index.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Roboto&family=Sansita+Swashed:wght@300&display=swap"
-    rel="stylesheet" defer>
-</head>
-
-<body>
-  <audio id="test-audio">
-    <source src="/drank_water.mp3" type="audio/mpeg">
-  </audio>
-  <div class="audio-container">
-    <i class="fa-solid fa-volume-xmark mute-audio"></i>
-    <label for="audio-slider"></label>
-    <input type="range" min="0" max="100" id="audio-slider" />
-  </div>
-  <div class="settings-icons">
-    <i class="fa-solid fa-droplet fa-lg"></i>
-    <i class="fa-solid fa-gear fa-2xl"></i>
-  </div>
-  <div class="body-container">
-    <div id="settings">
-      <div class="settings-container">
-        <h2>Settings</h2>
-        <div class="settings-close">
-          <i class="fa-solid fa-xmark fa-lg"></i>
-        </div>
-        <ul>
-          <li>
-            <span>Change daily reset:</span>
-            <label for="time-picker--settings"></label>
-            <input type="time" id="time-picker--settings"><span class="notice">24h format</span>
-            <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
-          </li>
-          <li>
-            <span>Change target goal:</span>
-            <label for="target-picker--settings"></label>
-            <input class="target-picker-input" type="number" id="target-picker--settings"/><span class="unit-of-measurement">oz</span>
-            <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
-          </li>
-        </ul>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Anthony Boyac">
+    <meta name="description" content="Fun app to track your daily water intake (with achievements ^_^)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drink!!</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" defer>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Roboto&family=Sansita+Swashed:wght@300&display=swap"
+      rel="stylesheet" defer>
+  </head>
+  
+  <body>
+    <audio id="test-audio">
+      <source src="/drank_water.mp3" type="audio/mpeg">
+    </audio>
+    <div class="audio-container">
+      <i class="fa-solid fa-volume-xmark mute-audio"></i>
+      <label for="audio-slider">
+        <input type="range" min="0" max="100" id="audio-slider" />
+      </label>
     </div>
-    <div class="achievements-container">
-      <h1>Achievements</h1>
-        <div class="achievements-list">
-          <div class="achievement achieve-target-goal" goalReached="1" >
-            <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the first time!</span>
-          </div>
-          <div class="achievement achieve-target-goal" goalReached="7">
-            <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the 7th time!</span>
-          </div>
-          <div class="achievement achieve-target-goal" goalReached="100">
-            <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the 100th time!</span>
-          </div>
-          <div class="achievement all-slime-animation">
-            <i class="fa-solid fa-star fa-xl"></i><span>See every slime animation available</span>
-          </div>
-        </div>
+    <div class="settings-icons">
+      <i class="fa-solid fa-droplet fa-lg"></i>
+      <i class="fa-solid fa-gear fa-2xl"></i>
     </div>
-    <div class="info-container">
-      <h1>Track your daily water intake!</h1>
-      <div class="start-of-day-container">
-        <span>What time do you wake up?</span>
-        <label for="time-picker--initial"></label>
-        <input type="time" id="time-picker--initial"><span class="notice">24h format</span>
-        <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
-      </div>
-      <div class="user-target-container">
-        <span>What is your target goal?</span>
-        <div>
-          <label for="target-picker--initial"></label>
-          <input class="target-picker-input" type="number" id="target-picker--initial"/><span class="unit-of-measurement">oz</span>
-          <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
+    <div class="body-container">
+      <div id="settings">
+        <div class="settings-container">
+          <h2>Settings</h2>
+          <div class="settings-close">
+            <i class="fa-solid fa-xmark fa-lg"></i>
+          </div>
+          <ul>
+            <li>
+              <span>Change daily reset:</span>
+              <label for="time-picker--settings">
+                <input type="time" id="time-picker--settings"><span class="notice">24h format</span>
+              </label>
+              <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
+            </li>
+            <li>
+              <span>Change target goal:</span>
+              <label for="target-picker--settings">
+                <input class="target-picker-input" type="number" id="target-picker--settings"/><span class="unit-of-measurement">oz</span>
+              </label>
+              <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
+            </li>
+          </ul>
         </div>
-        <hr>
-        <div>
-          <span class="water-rec">recommended for female is 91oz</span><br>
-          <span class="water-rec">recommended for male is 125oz</span>
-        </div>
       </div>
-      <div class="body-info">
-        <div class="preset-container">
-          <div class="preset-addition">
-            <h2>Presets</h2>
-            <div>
-              <label for="preset-name"></label>
-              <input type="text" id="preset-name" placeholder="name" />
-              <label for="preset-size"></label>
-              <input type="number" id="preset-size" placeholder="size (oz)" />
+      <div class="achievements-container">
+        <h1>Achievements</h1>
+          <div class="achievements-list">
+            <div class="achievement achieve-target-goal" goalReached="1" >
+              <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the first time!</span>
             </div>
-            <button type="button" onclick="AddPreset()">Add Preset</button>
+            <div class="achievement achieve-target-goal" goalReached="7">
+              <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the 7th time!</span>
+            </div>
+            <div class="achievement achieve-target-goal" goalReached="100">
+              <i class="fa-solid fa-star fa-xl"></i><span>Reach your target goal for the 100th time!</span>
+            </div>
+            <div class="achievement all-slime-animation">
+              <i class="fa-solid fa-star fa-xl"></i><span>See every slime animation available</span>
+            </div>
           </div>
-          <div class="preset-options hidden">
-            Select your preset: <select id="presets" onchange="OnSelectChange()"></select>
-          </div>
-        </div>
-        <div class="water-intake-container">
-          <div class="water-intake-title">
-            How much <i>water</i> did you drink?
-          </div>
-          <div class="water-intake-form">
-            <label for="input-water-intake"></label>
-            <input type="number" id="input_water_intake" />oz
-            <button type="button" id="update_water" onclick="WaterUpdate()">Drink!</button>
-            <button type="button" id="undo_water" onclick="WaterUndo()" disabled>Undo</button>
-          </div>
-          <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
-          <div>
-            <span>Your target goal: <span class="water-rec--user-target"></span>oz</span>
-          </div>
-        </div>
       </div>
-      <img src="/water_bottle.png" class="water-bottle" alt="water bottle overlay"/>
-      <div class="gif-animation">
+      <div class="info-container">
+        <h1>Track your daily water intake!</h1>
+        <div class="start-of-day-container">
+          <span>What time do you wake up?</span>
+          <label for="time-picker--initial">
+            <input type="time" id="time-picker--initial"><span class="notice">24h format</span>
+          </label>
+          <button class="time-picker-submit" type="button" onclick="TimePicker(this)">Save</button>
+        </div>
+        <div class="user-target-container">
+          <span>What is your target goal?</span>
+          <div>
+            <label for="target-picker--initial">
+              <input class="target-picker-input" type="number" id="target-picker--initial"/><span class="unit-of-measurement">oz</span>
+            </label>
+            <button class="target-picker" type="button" onclick="UserTargetPicker(this)">Save</button>
+          </div>
+          <hr>
+          <div>
+            <span class="water-rec">recommended for female is 91oz</span><br>
+            <span class="water-rec">recommended for male is 125oz</span>
+          </div>
+        </div>
+        <div class="body-info">
+          <div class="preset-container">
+            <div class="preset-addition">
+              <h2>Presets</h2>
+              <div>
+                <label for="preset-name">
+                  <input type="text" id="preset-name" placeholder="name" />
+                </label>
+                <label for="preset-size">
+                  <input type="number" id="preset-size" placeholder="size (oz)" />
+                </label>
+              </div>
+              <button type="button" onclick="AddPreset()">Add Preset</button>
+            </div>
+            <div class="preset-options hidden">
+              Select your preset: <select id="presets" onchange="OnSelectChange()"></select>
+            </div>
+          </div>
+          <div class="water-intake-container">
+            <div class="water-intake-title">
+              How much <i>water</i> did you drink?
+            </div>
+            <div class="water-intake-form">
+              <label for="input-water-intake">
+                <input type="number" id="input_water_intake" />oz
+              </label>
+              <button type="button" id="update_water" onclick="WaterUpdate()">Drink!</button>
+              <button type="button" id="undo_water" onclick="WaterUndo()" disabled>Undo</button>
+            </div>
+            <div>Today's water intake: <span id="track_water_intake"></span>oz</div>
+            <div>
+              <span>Your target goal: <span class="water-rec--user-target"></span>oz</span>
+            </div>
+          </div>
+        </div>
+        <img src="/water_bottle.png" class="water-bottle" alt="water bottle overlay"/>
+        <div class="gif-animation">
+        </div>
       </div>
     </div>
-  </div>
-  <script src="/index.js"></script>
-  <script src="https://kit.fontawesome.com/cef863f3ec.js" crossorigin="anonymous"></script>
-</body>
+    <script src="/index.js"></script>
+    <script src="https://kit.fontawesome.com/cef863f3ec.js" crossorigin="anonymous"></script>
+  </body>  
+</html>
