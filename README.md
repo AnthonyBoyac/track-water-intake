@@ -8,11 +8,11 @@
 ### Notes:
 - unit of measurement is in **ounces** for nice rounded inputs
 - mobile support coming in future updates
-- app is designed using *localStorage,* so users need to use the **same device and browser** if they want their daily activity tracked, more so for achievements (yes, there are achievements)
+- app is designed using *localStorage,* so users need to use the **same device and browser** if they want the daily activity tracked, more so for achievements (yes, there are achievements)
 
 ### What can users do?
 They can:
-1. decide their daily reset time based on their wakeup time
+1. decide their daily reset time 
 2. pick their daily target goal (at least 50)
     - there's a recommended amount of water needed, so users have an easier time picking a goal
 3. add presets
