@@ -13,7 +13,7 @@
 ### What can users do?
 They can:
 1. decide their daily reset time 
-2. pick their daily target goal (at least 50)
+2. pick their daily target goal (must be greater than 49)
     - there's a recommended amount of water needed, so users have an easier time picking a goal
 3. add presets
     - ie. I use the same water bottle everyday to drink water and I know how much liquid it can hold, so I would add it as a preset (in ounces)
