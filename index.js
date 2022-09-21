@@ -157,6 +157,7 @@ function PlayAudio() {
 
 // set daily reset based on time input value
 function TimePicker(el) {
+  console.log("bleh")
   // select the correct class from which button is clicked
   var startTime = el.previousElementSibling.children[0]
   if (startTime.value === "") {
@@ -168,13 +169,13 @@ function TimePicker(el) {
   resetNextDay.setHours(startTimeArr[0])
   resetNextDay.setMinutes(startTimeArr[1])
   resetNextDay.setSeconds(0)
-  localStorage.setItem(dayResetStorage, resetNextDay)
-  if (localStorage.getItem("dayReset") == null) {
+  if (localStorage.getItem(dayResetStorage) == null) {
     document.querySelector(startOfDayContainer).style.visibility = "hidden"
     document.querySelector(".user-target-container").style.display = "block"
   } else {
     showSuccessMessage()
   }
+  localStorage.setItem(dayResetStorage, resetNextDay)
 }
 
 // update user's water target 
@@ -184,7 +185,6 @@ function UserTargetPicker(el) {
     alert("Please enter a number greater than 50")
     throw new Error("Expected input to be greater than or equal to 50")
   }
-  localStorage.setItem(userTargetStorage, userTargetInput)
   waterRecTarget.innerHTML = userTargetInput
   if (localStorage.getItem(userTargetStorage) == null) {
     document.querySelector(".user-target-container").style.display = "none"
@@ -193,6 +193,7 @@ function UserTargetPicker(el) {
   } else {
     showSuccessMessage()
   }
+  localStorage.setItem(userTargetStorage, userTargetInput)
 }
 
 // update water input value based on selected preset
@@ -336,7 +337,6 @@ gifAnimation.style.display = "block"
 setInterval(function () {
   ResetDay()
 }, 60000) // 60sec
-
 /*
  * END - list of functions and event listeners
  */
